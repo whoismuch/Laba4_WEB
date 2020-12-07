@@ -60,3 +60,9 @@
 ## 20. Angular: модули, компоненты, сервисы и DI.
 ## 21. Angular: шаблоны страниц, жизненный цикл компонентов, подключение CSS.
 ## 22. Angular: клиент-серверное взаимодействие, создание, отправка и валидация данных форм.
+
+## Вопросы к себе
+
+1) Зачем export default в файлах js
+2) Отличие react-router от react-router-dom
+3) When using Webpack you need to require images in order for Webpack to process them, which would explain why external images load while internal do not, so instead of <img src={"/images/resto.png"} /> you need to use <img src={require('/images/image-name.png')} /> replacing image-name.png with the correct image name for each of them. That way Webpack is able to process and replace the source img.
