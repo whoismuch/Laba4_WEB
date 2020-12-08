@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'; // Component - класс из пакета react
-import RegistrationForm from "./examples/RegistrationForm";
-import './App.css';
+import './index.css';
 
 class Main extends Component {
 

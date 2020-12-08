@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'; // Component - класс из пакета react
-import RegistrationForm from "./examples/RegistrationForm";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import './App.css';
-
+import './styles/start.css';
+import AuthenticationForm from "./components/AuthenticationForm";
 class Start extends Component {
 
     addPoint() {
@@ -19,6 +18,9 @@ class Start extends Component {
         return (
             <div>
                 <Header/>
+                <div className="centerBorder">
+                    <AuthenticationForm/>
+                </div>
                 <Footer/>
             </div>
         );
