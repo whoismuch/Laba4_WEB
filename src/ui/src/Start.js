@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'; // Component - класс из пакета react
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import './styles/start.css';
 import AuthenticationForm from "./components/AuthenticationForm";
 class Start extends Component {
 
@@ -14,11 +13,12 @@ class Start extends Component {
     }
 
     render() {
-        console.log(this.props.testStore)
         return (
             <div>
                 <Header/>
                 <div className="centerBorder">
+                    <label className="title">Необходимо авторизоваться</label>
+                    <label className="title smallTitle">*Сожалею, это не моя прихоть*</label>
                     <AuthenticationForm/>
                 </div>
                 <Footer/>
