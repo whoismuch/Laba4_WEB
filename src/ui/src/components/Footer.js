@@ -1,6 +1,8 @@
 import React, {Component} from 'react'; // Component - класс из пакета react
-import doggy from '../resources/doggy.png';
+import doggy from '../../public/images/doggy.png';
 
+
+console.log(doggy);
 
 class Footer extends Component {
     render() {
