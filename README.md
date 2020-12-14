@@ -12,8 +12,8 @@
 - [ ] "Мобильный" - для устройств, ширина экрана которых меньше 708 пикселей 
     
 Стартовая страница должна содержать следующие элементы:
-- [ ] "Шапку", содержащую ФИО студента, номер группы и номер варианта
-- [ ] Форму для ввода логина и пароля 
+- [x] "Шапку", содержащую ФИО студента, номер группы и номер варианта
+- [x] Форму для ввода логина и пароля 
 - [ ] Информация о зарегистрированных в системе пользователях должна храниться в отдельной таблице БД 
 - [ ] Пароль должен храниться в виде хэш-суммы
 - [ ] Доступ неавторизованных пользователей к основной странице приложения должен быть запрещен 
@@ -39,6 +39,8 @@
 # Вопросы к защите лабораторной работы
 
 ## 1. Платформа Java EE. Спецификации и их реализации.
+
+
 ## 2. Принципы IoC, CDI и Location Transpanency. Компоненты и контейнеры.
 ## 3. Управление жизненным циклом компонентов. Дескрипторы развёртывания.
 ## 4. Java EE API. Виды компонентов. Профили платформы Java EE.
@@ -66,3 +68,6 @@
 1) Зачем export default в файлах js
 2) Отличие react-router от react-router-dom
 3) When using Webpack you need to require images in order for Webpack to process them, which would explain why external images load while internal do not, so instead of <img src={"/images/resto.png"} /> you need to use <img src={require('/images/image-name.png')} /> replacing image-name.png with the correct image name for each of them. That way Webpack is able to process and replace the source img.
+4) rest easy что це такое
+5) Лучше деплоить вместе или раздельно 
+

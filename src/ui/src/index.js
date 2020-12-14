@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import theme from 'assets/react-toolbox/theme';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import { HashRouter as Router, Route} from 'react-router-dom';
+import {HashRouter as Router, Route} from 'react-router-dom';
 
 import './index.css';
 import Start from './Start';
 import Main from './Main';
+import Test from './Test';
 
+const contextTheme = {
+    // RTDropdown: require('react-toolbox/lib/dropdown/style.scss'),
+};
 
 const initialState = [
-  'red', 'green'
+    'red', 'green'
 ];
 
 function main(state = initialState, action) {
@@ -26,15 +31,17 @@ function main(state = initialState, action) {
 const store = createStore(main); //Функция main называется reducer
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <Route exact path="/" component={Start}/>
-            <Route path="/main" component={Main}/>
-        </Router>
-    </Provider>,
-    document.getElementById('root')
-);
-
+    // <Provider store={store}>
+    //     <Router>
+    //         <Route exact path="/" component={Start}/>
+    //         <Route path="/main" component={Main}/>
+    //         <Route path="/test" component={Test}/>
+    //     </Router>
+     <Test/>,
+    // </Provider>,
+document.getElementById('root')
+)
+;
 
 
 // import {createStore} from "redux";

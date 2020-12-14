@@ -1,42 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'; // Component - класс из пакета react
 import './index.css';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import PointForm from "./components/PointForm";
 
 class Main extends Component {
 
-    addPoint() {
-        console.log('addPoint', this.trackInput.value);
-        this.props.onAddPoint(this.trackInput.value);
-        this.trackInput.value = '';
-
-    }
 
     render() {
-        console.log(this.props.testStore)
         return (
             <div>
-                <input type="text" ref={(input) => {this.trackInput = input}}/>
-                <button onClick={this.addPoint.bind(this)}>Add track</button>
-                <ul>
-                    {this.props.testStore.map((track, index) =>
-                        <li key={index}>{track}</li>
-                    )}
-                </ul>
+                <Header/>
+                <div className="centerBorderMain">
+                    <PointForm className="commonGroup"/>
+                </div>
+                <Footer/>
             </div>
         );
     }
 }
 
-export default connect(
-    state => ({ //state - глобальное состояние store'а
-        testStore: state
-    }),
-    dispatch => ({
-        onAddPoint: (pointName) => {
-            dispatch({type: 'ADD_POINT', point: pointName})
-        }
-    })
-)(Main);
+export default (Main);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.

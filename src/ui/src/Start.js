@@ -5,18 +5,12 @@ import Footer from "./components/Footer";
 import AuthenticationForm from "./components/AuthenticationForm";
 class Start extends Component {
 
-    addPoint() {
-        console.log('addPoint', this.trackInput.value);
-        this.props.onAddPoint(this.trackInput.value);
-        this.trackInput.value = '';
-
-    }
 
     render() {
         return (
             <div>
                 <Header/>
-                <div className="centerBorder">
+                <div className="centerBorderStart">
                     <label className="title">Необходимо авторизоваться</label>
                     <label className="title smallTitle">*Сожалею, это не моя прихоть*</label>
                     <AuthenticationForm/>
@@ -27,16 +21,7 @@ class Start extends Component {
     }
 }
 
-export default connect(
-    state => ({ //state - глобальное состояние store'а
-        testStore: state
-    }),
-    dispatch => ({
-        onAddPoint: (pointName) => {
-            dispatch({type: 'ADD_POINT', point: pointName})
-        }
-    })
-)(Start);
+export default (Start);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.
