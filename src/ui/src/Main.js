@@ -13,7 +13,7 @@ class Main extends Component {
             <div>
                 <Header/>
                 <div className="centerBorderMain">
-                    <PointForm className="commonGroup"/>
+                    <PointForm/>
                 </div>
                 <Footer/>
             </div>

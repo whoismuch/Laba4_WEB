@@ -31,12 +31,11 @@ function main(state = initialState, action) {
 const store = createStore(main); //Функция main называется reducer
 
 ReactDOM.render(
-    // <Router history={hashHistory}>
-    //     <Route exact path="/" component={Start}/>
-    //     <Route path="/main" component={Main}/>
-    //     <Route path="/test" component={Test}/>
-    // </Router>,
-    <Start/>,
+    <Router history={hashHistory}>
+        <Route exact path="/" component={Start}/>
+        <Route path="/main" component={Main}/>
+        <Route path="/test" component={Test}/>
+    </Router>,
 document.getElementById('root')
 )
 ;
