@@ -5,7 +5,7 @@ class Table extends Component {
     render() {
         return (
             <div className="table">
-                    <table lass="table" value="" var="point">
+                    <table  value="">
                         <tr>
                             <th>X</th>
                             <th>Y</th>

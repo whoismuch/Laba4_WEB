@@ -76,11 +76,11 @@ class AuthenticationForm extends Component {
     render() {
         return (
             <form className="form">
-                <div className={'inputArea ${this.errorClass(this.state.formErrors.login)}'} >
+                <div className="inputArea" >
                     <input className={this.errorClass(this.state.formErrors.login)} type="text" placeholder="Введите логин"  onChange={this.handleUserLoginInput}/>
                 </div>
-                <div className={'inputArea ${this.errorClass(this.state.formErrors.password)}'}>
-                    <input type="password" placeholder="Введите пароль" value={this.state.password} onChange={this.handleUserPasswordInput}/>
+                <div className="inputArea">
+                    <input className={this.errorClass(this.state.formErrors.password)}  type="password" placeholder="Введите пароль" value={this.state.password} onChange={this.handleUserPasswordInput}/>
                 </div>
                 <div className="errorText">
                     <FormErrors formErrors={this.state.formErrors}/>
