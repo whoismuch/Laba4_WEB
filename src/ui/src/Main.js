@@ -4,6 +4,8 @@ import './index.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PointForm from "./components/PointForm";
+import Graphic from "./components/Graphic";
+import Table from "./components/Table";
 
 class Main extends Component {
 
@@ -13,7 +15,11 @@ class Main extends Component {
             <div>
                 <Header/>
                 <div className="centerBorderMain">
-                    <PointForm/>
+                    <div className="formAndGraphic">
+                        <PointForm/>
+                        <Graphic/>
+                    </div>
+                    <Table/>
                 </div>
                 <Footer/>
             </div>
