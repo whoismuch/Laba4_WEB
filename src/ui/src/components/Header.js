@@ -3,12 +3,13 @@ import React, {Component} from 'react'; // Component - класс из паке�
 
 class Header extends Component {
     render() {
+        const {name,surname,variant,group} = this.props;
         return (
             <div className="header">
                 <em>
-                    <p>Байрамова Хумай</p>
-                    <p>Вариант №28236</p>
-                    <p>Группа №P3232</p>
+                    <p>{surname + " " + name}</p>
+                    <p>Вариант №{variant}</p>
+                    <p>Группа №{group}</p>
                 </em>
             </div>
         )

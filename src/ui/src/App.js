@@ -1,44 +1,85 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'; // Component - класс из пакета react
-import RegistrationForm from "./examples/RegistrationForm";
+
 import './App.css';
+import {hashHistory, Route, Router} from "react-router";
+import Start from "./Start";
+import Main from "./Main";
+import Test from "./Test";
+import {connect} from 'react-redux';
 
 class App extends Component {
 
-    addPoint() {
-        console.log('addPoint', this.trackInput.value);
-        this.props.onAddPoint(this.trackInput.value);
-        this.trackInput.value = '';
-
-    }
-
     render() {
-        console.log(this.props.testStore)
         return (
-            <div>
+            <Router history={hashHistory}>
+                <Route exact path="/" component={Start}/>
+                <Route exact path="/main" component={Main}/>
+                <Route exact path="/test" component={Test}/>
+            </Router>
+        )
+    }
+};
 
-                <input type="text" ref={(input) => {this.trackInput = input}}/>
-                <button onClick={this.addPoint.bind(this)}>Add track</button>
-                <ul>
-                    {this.props.testStore.map((track, index) =>
-                    <li key={index}>{track}</li>
-                    )}
-                </ul>
-            </div>
-        );
+const mapStateToProps = store =>{
+    return {
+        page: store.page,
+        style: store.style
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return{
+        setMarginTop: margin => dispatch(setMarginTop(margin)),
+        setMarginLeft: margin => dispatch(setMarginLeft(margin)),
+        setCof: cof => dispatch(setCof(cof)),
+        setClock: width => dispatch(setClock(width)),
+        setStyle: style => dispatch(setStyle(style)),
+        setWidth: width => dispatch(setWidth(width)),
+        setPageWidth: width =>dispatch(setPageWidth(width)),
+        setDevice: type => dispatch(setDevice(type)),
+        setLogin: flag => dispatch(setLogin(flag)),
+    }
+};
+
 export default connect(
-    state => ({ //state - глобальное состояние store'а
-        testStore: state
-    }),
-    dispatch => ({
-        onAddPoint: (pointName) => {
-            dispatch({type: 'ADD_POINT', point: pointName})
-        }
-    })
-)(App);
+    mapStateToProps,
+    mapDispatchToProps,
+)(App)
+//
+//     addPoint() {
+//         console.log('addPoint', this.trackInput.value);
+//         this.props.onAddPoint(this.trackInput.value);
+//         this.trackInput.value = '';
+//
+//     }
+//
+//     render() {
+//         console.log(this.props.testStore)
+//         return (
+//             <div>
+//
+//                 <input type="text" ref={(input) => {this.trackInput = input}}/>
+//                 <button onClick={this.addPoint.bind(this)}>Add track</button>
+//                 <ul>
+//                     {this.props.testStore.map((track, index) =>
+//                     <li key={index}>{track}</li>
+//                     )}
+//                 </ul>
+//             </div>
+//         );
+//     }
+// }
+//
+// export default connect(
+//     state => ({ //state - глобальное состояние store'а
+//         testStore: state
+//     }),
+//     dispatch => ({
+//         onAddPoint: (pointName) => {
+//             dispatch({type: 'ADD_POINT', point: pointName})
+//         }
+//     })
+// )(App);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.

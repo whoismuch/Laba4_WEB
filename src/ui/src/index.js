@@ -1,44 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import theme from 'assets/react-toolbox/theme';
-// import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import {Router, Route, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import {store} from "./store/store";
 
 import './index.css';
-import Start from './Start';
-import Main from './Main';
-import Test from './Test';
+import App from "./App";
 
-const contextTheme = {
-    // RTDropdown: require('react-toolbox/lib/dropdown/style.scss'),
-};
 
-const initialState = [
-    'red', 'green'
-];
-
-function main(state = initialState, action) {
-    if (action.type === 'ADD_POINT') {
-        return [
-            ...state,
-            action.point
-        ];
-    }
-    return state;
-}
-
-const store = createStore(main); //Функция main называется reducer
 
 ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route exact path="/" component={Start}/>
-        <Route path="/main" component={Main}/>
-        <Route path="/test" component={Test}/>
-    </Router>,
-document.getElementById('root')
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.getElementById('root')
 )
 ;
+
+
+
+
+// const initialState = [
+//     'red', 'green'
+// ];
+//
+// function main(state = initialState, action) {
+//     if (action.type === 'ADD_POINT') {
+//         return [
+//             ...state,
+//             action.point
+//         ];
+//     }
+//     return state;
+// }
+
+// const store = createStore(main); //Функция main называется reducer
 
 
 // import {createStore} from "redux";

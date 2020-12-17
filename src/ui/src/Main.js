@@ -11,9 +11,10 @@ class Main extends Component {
 
 
     render() {
+        const {header} = this.props;
         return (
             <div>
-                <Header/>
+                <Header name={header.name} surname={header.surname} varian={header.variant} group={header.group}/>
                 <div className="centerBorderMain">
                     <div className="formAndGraphic">
                         <PointForm/>
@@ -27,7 +28,13 @@ class Main extends Component {
     }
 }
 
-export default (Main);
+const mapStateToProps = store => {
+    return {
+        header: store.header,
+    }
+};
+
+export default connect(mapStateToProps)(Main);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.

@@ -7,9 +7,10 @@ class Start extends Component {
 
 
     render() {
+        const {header} = this.props;
         return (
             <div>
-                <Header/>
+                <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderStart">
                     <label className="title">Необходимо авторизоваться</label>
                     <label className="title smallTitle">*Сожалею, это не моя прихоть*</label>
@@ -21,7 +22,13 @@ class Start extends Component {
     }
 }
 
-export default (Start);
+const mapStateToProps = store => {
+    return {
+        header: store.header,
+    }
+};
+
+export default connect(mapStateToProps)(Start);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.
