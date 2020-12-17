@@ -14,7 +14,7 @@ class Main extends Component {
         const {header} = this.props;
         return (
             <div>
-                <Header name={header.name} surname={header.surname} varian={header.variant} group={header.group}/>
+                <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderMain">
                     <div className="formAndGraphic">
                         <PointForm/>

@@ -2,8 +2,6 @@ import React, {Component} from 'react'; // Component - класс из паке�
 import doggy from '../../public/images/doggy.png';
 
 
-console.log(doggy);
-
 class Footer extends Component {
     render() {
         return (

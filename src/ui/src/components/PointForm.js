@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Dropdown} from "react-toolbox/lib/dropdown";
 import {Input} from "react-toolbox/lib/input";
 import FormErrors from "./FormErrors";
+import {connect} from 'react-redux'; // Component - класс из пакета react
+import {sendPoint, setR, setX, setY} from "../actions/appActions";
 
 const paramXValues = [
     {value: '-4', label: '-4'},
@@ -43,27 +45,25 @@ class PointForm extends Component {
 
         };
         this.handleChangeX = this.handleChangeX.bind(this);
-        this.handleChangeR = this.handleChangeR.bind(this)
+        this.handleChangeY = this.handleChangeY.bind(this);
+        this.handleChangeR = this.handleChangeR.bind(this);
 
     }
 
     handleChangeX = (value) => {
-        this.setState({paramX: value}, () => {
-            this.validateField('paramX', value)
-        });
+        this.props.setX(value);
+        this.validateField('paramX', value)
     };
 
     handleChangeR = (value) => {
-        this.setState({paramR: value}, () => {
-            this.validateField('paramR', value)
-        });
+        this.props.setR(value);
+        this.validateField('paramR', value)
     };
 
     handleChangeY = (value) => {
-        this.setState({paramY: value}, () => {
-            this.validateField('paramY', value)
-        });
-    }
+        this.props.setY(value);
+        this.validateField('paramY', value)
+    };
 
 
     validateField(fieldName, value) {
@@ -109,11 +109,9 @@ class PointForm extends Component {
 
     }
 
-    errorClass(error) {
-        return(error.length == 0 ? '' : 'input-error' )
-    }
 
     render() {
+        const {app} = this.props;
         return (
             <div className="commonGroup">
                 <div className="fillItPls">Заполните тут все, позязя</div>
@@ -125,7 +123,7 @@ class PointForm extends Component {
                             onChange={this.handleChangeR}
                             class="dropdown"
                             source={paramRValues}
-                            value={this.state.paramR}
+                            value={app.r}
                         />
                     </div>
 
@@ -136,7 +134,7 @@ class PointForm extends Component {
                             onChange={this.handleChangeX}
                             class="dropdown"
                             source={paramXValues}
-                            value={this.state.paramX}
+                            value={app.x}
                         />
                     </div>
 
@@ -154,7 +152,24 @@ class PointForm extends Component {
 
         )
     }
+
 }
 
-export default PointForm;
+const mapStateToProps = store => {
+    return {
+        app: store.app,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setX: x => dispatch(setX(x)),
+        setR: r => dispatch(setR(r)),
+        setY: y => dispatch(setY(y)),
+        sendPoint: butch => dispatch(sendPoint(butch))
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PointForm);
 
