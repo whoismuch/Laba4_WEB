@@ -28,7 +28,7 @@ public class PointManager {
         try {
             Integer x = Integer.parseInt(dx.toString( ));
             Integer r = Integer.parseInt(dr.toString( ));
-            if (x < -4 || x > 4 || y < -3 || y > 5 || r < -4 || r > 4) throw new NumberFormatException();
+            if (x < -4 || x > 4 || y < -3 || y > 5 || r < 1 || r > 4) throw new NumberFormatException();
             Point point = new Point(x, y, r);
             if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4 || y <= 0 && x <= 0 && y >= -0.5 * x - r / 2)
                 point.setResult(true);

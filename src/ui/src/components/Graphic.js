@@ -1,29 +1,37 @@
 import React, {Component} from 'react'; // Component - класс из пакета react
 import '../index.css';
+import {connect} from 'react-redux'; // Component - класс из пакета react
+import {sendPoint, setR, setX, setY} from "../actions/appActions";
 
 
 class Graphic extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handleClickFrame = this.handleClickFrame.bind(this);
+    }
+
     render() {
         return (
             <div className="svg">
-                <svg id="svg"  width="300" height="300" class="svg-graph">
+                <svg id="svg" width="300" height="300" class="svg-graph">
 
 
                     <line className="axis" x1="0" x2="300" y1="150" y2="150" stroke="black"></line>
-                    <line className="axis" x1="150" x2="150" y1="0" y2="300" stroke="black"></line>
+                    <line className="axis" x1="150" x2="150" y1="0" y2="300" stroke="black"/>
                     <polygon points="150,0 144,15 156,15" stroke="black"></polygon>
                     <polygon points="300,150 285,156 285,144" stroke="black"></polygon>
 
                     <line className="coor-line" x1="200" x2="200" y1="155" y2="145" stroke="black"></line>
-                    <line className="coor-line" x1="250" x2="250" y1="155" y2="145" stroke="black"></line>
+                    <line className="coor-line" x1="250" x2="250" y1="155" y2="145" stroke="black"/>
 
                     <line className="coor-line" x1="50" x2="50" y1="155" y2="145" stroke="black"></line>
-                    <line className="coor-line" x1="100" x2="100" y1="155" y2="145" stroke="black"></line>
+                    <line className="coor-line" x1="100" x2="100" y1="155" y2="145" stroke="black"/>
 
-                    <line className="coor-line" x1="145" x2="155" y1="100" y2="100" stroke="black"></line>
+                    <line className="coor-line" x1="145" x2="155" y1="100" y2="100" stroke="black"/>
                     <line className="coor-line" x1="145" x2="155" y1="50" y2="50" stroke="black"></line>
 
-                    <line className="coor-line" x1="145" x2="155" y1="200" y2="200" stroke="black"></line>
+                    <line className="coor-line" x1="145" x2="155" y1="200" y2="200" stroke="black"/>
                     <line className="coor-line" x1="145" x2="155" y1="250" y2="250" stroke="black"></line>
 
                     <text className="coor-text" x="195" y="140">R/2</text>
@@ -42,22 +50,79 @@ class Graphic extends Component {
                     <text className="axis-text" x="160" y="13">Y</text>
 
                     <polygon class="rectangle-figure" points="150,150 250,150 250,250, 150,250"
-                             fill="blue" fillOpacity="0.7" stroke="blue"></polygon>
+                             fill="blue" fillOpacity="0.7" stroke="blue"/>
 
                     <polygon class="triangle-figure" points="50,150 150,150 150,200"
-                             fill="blue" fillOpacity="0.7" stroke="blue"></polygon>
+                             fill="blue" fillOpacity="0.7" stroke="blue"/>
 
                     <path class="circle-figure" d="M 100 150 A 50 50, 180, 0, 1, 150 100 L 150 150 Z"
-                          fill="blue" fillOpacity="0.7" stroke="blue"></path>
+                          fill="blue" fillOpacity="0.7" stroke="blue"/>
 
-                    <polygon id="frame" class="frame" points="0,0 0,300 300,300 300,0"></polygon>
+                    <polygon ref='frame' onClick={this.handleClickFrame} id="frame" class="frame"
+                             points="0,0 0,300 300,300 300,0"/>
 
                 </svg>
+
+                <label ref='labelChR' className="errorText"></label>
             </div>
         )
     }
 
+    handleClickFrame = (event) => {
+
+        const frame = this.refs.frame;
+        const label = this.refs.labelChR;
+
+
+        if (this.props.app.r == null) {
+            label.innerHTML = "Ну не по-пацански это, R выберите";
+        }
+
+        else {
+            label.innerHTML = "";
+
+            let x0 = frame.getBoundingClientRect().x;
+            let y0 = frame.getBoundingClientRect().y;
+
+            let centerX = x0 + 150;
+            let centerY = y0 + 150;
+
+            let currentX = (event.pageX - centerX) / 100 * this.props.app.r;
+            let currentY = (centerY - event.pageY) / 100 * this.props.app.r;
+
+            this.props.setX(currentX);
+            this.props.setY(currentY);
+
+            let params = {
+                x: currentX,
+                y: currentY,
+                r: this.props.app.r
+            };
+
+            console.log(params);
+            this.props.sendPoint(params);
+        }
+    };
+
+
 }
 
-export default Graphic;
+
+const mapStateToProps = store => {
+    return {
+        app: store.app,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+        return {
+            setX: x => dispatch(setX(x)),
+            setR: r => dispatch(setR(r)),
+            setY: y => dispatch(setY(y)),
+            sendPoint: point => dispatch(sendPoint(point))
+        }
+    }
+;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Graphic);
 

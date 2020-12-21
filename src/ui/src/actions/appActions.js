@@ -31,7 +31,8 @@ export function setY(Y) {
 
 export function sendPoint(point) {
 
-    console.log(point.x)
+
+    console.log(point.x);
     return dispatch => {
         let header = 'Basic ' + btoa("whoismuch" + ':' + "help");
         axios({
@@ -52,10 +53,11 @@ export function sendPoint(point) {
                 })
             }})
             .catch(data => console.log(data));
-        dispatch({
-            type: SET_X,
-            payload: null,
-        });
+        // dispatch({
+        //     type: SET_X,
+        //     payload: null,
+
+        // });
         dispatch({
             type: SET_R,
             payload: null,

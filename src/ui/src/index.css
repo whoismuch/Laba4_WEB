@@ -237,6 +237,12 @@ input::placeholder {
     width: inherit;
 }
 
+.svg > .errorText {
+    text-align: center;
+    width: inherit;
+    color: red;
+}
+
 .formErrors {
     color: red;
     font-size: 15px;
