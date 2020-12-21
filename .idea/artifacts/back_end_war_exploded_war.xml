@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="back-end:war exploded.war">
+    <output-path>$PROJECT_DIR$/out/artifacts/back_end_war_exploded.war</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="back-end" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.ws.rs" />
+          <element id="library" level="project" name="cors-filter-1.7" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="back-end/web/Web" />
+      <element id="javaee-facet-resources" facet="back-end/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

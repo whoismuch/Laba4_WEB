@@ -38,7 +38,7 @@ class PointForm extends Component {
             paramX: '',
             paramR: '',
             paramY: '',
-            formErrors: {paramX: '', paramR: '', paramY: ''},
+            formErrors: {paramX: '', paramR: '', paramY: '', all: ''},
             paramXValid: false,
             paramRValid: false,
             paramYValid: false
@@ -47,6 +47,7 @@ class PointForm extends Component {
         this.handleChangeX = this.handleChangeX.bind(this);
         this.handleChangeY = this.handleChangeY.bind(this);
         this.handleChangeR = this.handleChangeR.bind(this);
+        this.paramsIsReady = this.paramsIsReady.bind(this);
 
     }
 
@@ -64,6 +65,24 @@ class PointForm extends Component {
         this.props.setY(value);
         this.validateField('paramY', value)
     };
+
+    paramsIsReady = (e) => {
+        let errors = this.state.formErrors;
+        if (!this.state.formValid) errors.all = 'Провести меня вздумали? Поля заполните и не буяньте тут'
+        else {
+            this.preparePoint(this.props.app.x, this.props.app.y, this.props.app.r);
+        }
+    };
+
+    preparePoint(x, y, r) {
+        console.log(x + " " + y + " " + r);
+        let params = {
+            x: x,
+            y: y,
+            r: r
+        };
+        this.props.sendPoint(params);
+    }
 
 
     validateField(fieldName, value) {
@@ -146,7 +165,9 @@ class PointForm extends Component {
                     <FormErrors formErrors={this.state.formErrors}/>
                 </div>
                 <div className="checkButton">
-                    <button className="checkButtonInside" disabled={!this.state.formValid}>Проверить</button>
+                    <button className="checkButtonInside" onClick={this.paramsIsReady}
+                            disabled={!this.state.formValid}>Проверить
+                    </button>
                 </div>
             </div>
 
@@ -166,7 +187,7 @@ const mapDispatchToProps = dispatch => {
         setX: x => dispatch(setX(x)),
         setR: r => dispatch(setR(r)),
         setY: y => dispatch(setY(y)),
-        sendPoint: butch => dispatch(sendPoint(butch))
+        sendPoint: point => dispatch(sendPoint(point))
     }
 };
 
