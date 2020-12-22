@@ -22,11 +22,11 @@ public class PointManager {
 
     @POST
     @Path("/check")
-    public void checkPoint (@FormParam("x") Double dx, @FormParam("y") Double y, @FormParam("r") Double dr, @Context HttpServletRequest request, @Context HttpServletResponse response) {
-        System.out.println(dx + " " + y + " " + dr);
+    public void checkPoint (@FormParam("x") Double x, @FormParam("y") Double y, @FormParam("r") Double dr, @Context HttpServletRequest request, @Context HttpServletResponse response) {
+        System.out.println(x + " " + y + " " + dr);
 
         try {
-            Integer x = Integer.parseInt(dx.toString( ));
+//            Integer x = Integer.parseInt(dx.toString( ));
             Integer r = Integer.parseInt(dr.toString( ));
             if (x < -4 || x > 4 || y < -3 || y > 5 || r < 1 || r > 4) throw new NumberFormatException();
             Point point = new Point(x, y, r);
