@@ -32,17 +32,21 @@ export function setY(Y) {
 export function sendPoint(point) {
 
 
+    var bodyFormData = new FormData();
+    bodyFormData.append('x', point.x);
+    bodyFormData.append('y', point.y);
+    bodyFormData.append('r', point.r);
+
     console.log(point.x);
     return dispatch => {
         let header = "localhost";
         axios({
-            url: 'http://localhost:8999/point/check',
-            data: point,
+            url: 'http://localhost:8999/back_end_war_exploded/api/point/check',
+            data: bodyFormData,
             method: 'post',
-            headers: {
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
+            // headers: {
+            //     'Content-Type': 'multipart/form-data'
+            // }
         })
             .then(result => {
                 console.log(result);
