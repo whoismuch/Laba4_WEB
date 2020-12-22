@@ -4,40 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-<!--    <servlet>-->
+    <filter>
+        <filter-name>cors</filter-name>
+        <filter-class>ResponseFilter</filter-class>
+    </filter>
 
-<!--        <servlet-name>jersey-helloworld-serlvet</servlet-name>-->
+    <filter-mapping>
+        <filter-name>cors</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-<!--        <servlet-class>-->
-
-<!--            com.sun.jersey.spi.container.servlet.ServletContainer-->
-
-<!--        </servlet-class>-->
-
-
-<!--        <load-on-startup>1</load-on-startup>-->
-
-<!--    </servlet>-->
-
-<!--    <servlet-mapping>-->
-
-<!--        <servlet-name>jersey-helloworld-serlvet</servlet-name>-->
-
-<!--        <url-pattern>/rest/*</url-pattern>-->
-
-<!--    </servlet-mapping>-->
-    <servlet>
-        <servlet-name>servlet</servlet-name>
-        <servlet-class>MyServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>servlet</servlet-name>
-        <url-pattern>/servlet</url-pattern>
-    </servlet-mapping>
-    <ejb-local-ref>
-        <ejb-ref-name>ejb/UserManager</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local-home>HelloLocalHome</local-home>
-        <local>HelloLocal</local>
-    </ejb-local-ref>
 </web-app>

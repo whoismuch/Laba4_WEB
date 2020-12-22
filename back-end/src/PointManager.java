@@ -21,7 +21,7 @@ public class PointManager {
 
 
     @POST
-    @Path("/checkPoint")
+    @Path("/check")
     public void checkPoint (@FormParam("x") Double dx, @FormParam("y") Double y, @FormParam("r") Double dr, @Context HttpServletRequest request, @Context HttpServletResponse response) {
         System.out.println(dx + " " + y + " " + dr);
 

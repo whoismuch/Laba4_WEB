@@ -9,6 +9,8 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="javax.ws.rs" />
           <element id="library" level="project" name="cors-filter-1.7" />
+          <element id="library" level="project" name="eclipselink" />
+          <element id="library" level="project" name="postgresql-42.2.12" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="back-end/web/Web" />

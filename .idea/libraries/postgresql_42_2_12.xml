@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="postgresql-42.2.12">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../rubezhka/src/postgresql-42.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

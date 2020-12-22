@@ -18,6 +18,16 @@
         </ejbRoots>
       </configuration>
     </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="postgres" value="c380e0dc-72a7-4f94-af95-e82628f141fb" />
+        </datasource-mapping>
+        <naming-strategy-map />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -31,5 +41,8 @@
     <orderEntry type="library" name="javax.ws.rs" level="project" />
     <orderEntry type="library" name="javax.ws.rs" level="project" />
     <orderEntry type="library" name="cors-filter-1.7" level="project" />
+    <orderEntry type="library" name="javaee-api-7.0" level="project" />
+    <orderEntry type="library" name="eclipselink" level="project" />
+    <orderEntry type="library" name="postgresql-42.2.12" level="project" />
   </component>
 </module>

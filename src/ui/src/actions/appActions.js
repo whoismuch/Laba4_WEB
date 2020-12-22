@@ -34,13 +34,14 @@ export function sendPoint(point) {
 
     console.log(point.x);
     return dispatch => {
-        let header = 'Basic ' + btoa("whoismuch" + ':' + "help");
+        let header = "localhost";
         axios({
-            url: 'http://localhost:8999/checkPoint',
+            url: 'http://localhost:8999/point/check',
             data: point,
             method: 'post',
             headers: {
-                Authorization: header,
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
         })
             .then(result => {
@@ -53,11 +54,11 @@ export function sendPoint(point) {
                 })
             }})
             .catch(data => console.log(data));
-        // dispatch({
-        //     type: SET_X,
-        //     payload: null,
+        dispatch({
+            type: SET_X,
+            payload: null,
 
-        // });
+        });
         dispatch({
             type: SET_R,
             payload: null,

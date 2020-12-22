@@ -1,12 +1,15 @@
 import javax.persistence.*;
 
 @Entity
-@Table(name= "Points")
+@Table(name= "points")
 public class Point {
 
+    public Point ( ) {
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "points_id_seq", initialValue = 1, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "generatorPoint")
+    @SequenceGenerator(name = "generatorPoint", sequenceName = "points_id_seq", initialValue = 1, allocationSize=1)
     @Column(name = "id", nullable = false)
     private Integer id;
     @Column(name = "x", nullable = false)
