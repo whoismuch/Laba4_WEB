@@ -39,7 +39,7 @@ public class CORSFilter implements Filter {
 
         chain.doFilter(request, servletResponse);
     }
-    
+
     public void init(FilterConfig fConfig) throws ServletException {
     }
 

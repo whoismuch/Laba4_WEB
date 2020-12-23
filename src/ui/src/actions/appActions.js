@@ -44,9 +44,9 @@ export function sendPoint(point) {
             url: 'http://localhost:8999/back_end_war_exploded/api/point/check',
             data: bodyFormData,
             method: 'post',
-            // headers: {
-            //     'Content-Type': 'multipart/form-data'
-            // }
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         })
             .then(result => {
                 console.log(result);

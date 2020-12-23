@@ -44,5 +44,8 @@
     <orderEntry type="library" name="javaee-api-7.0" level="project" />
     <orderEntry type="library" name="eclipselink" level="project" />
     <orderEntry type="library" name="postgresql-42.2.12" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="library" name="impl-0.0.17" level="project" />
+    <orderEntry type="library" name="jackson-databind-2.12.0" level="project" />
   </component>
 </module>
