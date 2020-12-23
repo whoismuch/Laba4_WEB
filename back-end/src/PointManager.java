@@ -36,22 +36,23 @@ public class PointManager {
     @Consumes("multipart/form-data")
     public void checkPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException, ServletException {
 
-        Double x = params.get("x");
-        Double y = params.get("y");
-        Double dr = params.get("r");
+        double x = params.get("x");
+        double y = params.get("y");
+        double dr = params.get("r");
 
 
         try {
-            Integer r = Integer.parseInt(dr.toString( ));
+            Integer r = (int) dr;
             if (x < -4 || x > 4 || y < -3 || y > 5 || r < 1 || r > 4) throw new NumberFormatException();
             Point point = new Point(x, y, r);
             if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4 || y <= 0 && x <= 0 && y >= -0.5 * x - r / 2)
                 point.setResult(true);
             else point.setResult(false);
-            ArrayList<Point> pointList = (ArrayList<Point>) request.getSession( ).getAttribute("points");
+//            ArrayList<Point> pointList = (ArrayList<Point>) request.getSession( ).getAttribute("points");
+            ArrayList<Point> pointList = new ArrayList<>();
             pointList.add(point);
             dataBaseService.savePoint(point);
-            response.sendRedirect("http://localhost:3030/#/main");
+//            response.sendRedirect("http://localhost:3030/#/main");
         } catch (NumberFormatException ex) {
             // Сказать клиенту, что он нас обманул.
         } catch (Exception e) {

@@ -1,5 +1,7 @@
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -11,19 +13,15 @@ public class DataBaseService {
     @PersistenceContext(unitName = "postgres")
     private EntityManager em;
 
-    @Resource
-    private UserTransaction userTransaction;
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void saveUser(User user) throws Exception {
-        userTransaction.begin();
         em.persist(user);
-        userTransaction.commit();
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void savePoint(Point point) throws Exception {
-        userTransaction.begin();
         em.persist(point);
-        userTransaction.commit();
     }
 
     public boolean doesUserExist(String login, String password) throws NoResultException {
