@@ -251,6 +251,10 @@ input::placeholder {
     width: inherit;
 }
 
+.marginTop {
+    margin-top: 10px;
+}
+
 .buttons {
     margin-top: 50px;
     display: flex;

@@ -52,7 +52,6 @@ public class PointManager {
             ArrayList<Point> pointList = new ArrayList<>();
             pointList.add(point);
             dataBaseService.savePoint(point);
-//            response.sendRedirect("http://localhost:3030/#/main");
         } catch (NumberFormatException ex) {
             // Сказать клиенту, что он нас обманул.
         } catch (Exception e) {

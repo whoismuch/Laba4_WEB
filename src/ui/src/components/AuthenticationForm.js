@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import FormErrors from "./FormErrors"; // Component - класс из пакета react
+import FormErrors from "./FormErrors";
+import {registration, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
+import {connect} from 'react-redux'; // Component - класс из пакета react
 
 
 class AuthenticationForm extends Component {
@@ -7,27 +9,48 @@ class AuthenticationForm extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            login: '',
-            password: '',
-            formErrors: {login: '', password: ''},
+            formErrors: {login: '', password: '', all: ''},
             loginValid: false,
             passwordValid: false,
-            formValid: false
-        }
+        };
+        this.handleUserLoginInput = this.handleUserLoginInput.bind(this);
+        this.handleUserPasswordInput = this.handleUserPasswordInput.bind(this);
+        this.handleUserLoginInput = this.handleUserLoginInput.bind(this);
+        this.userIsReady = this.userIsReady.bind(this);
     }
 
     handleUserLoginInput = (e) => {
-        const value = e.target.value;
-        this.setState({login: value},  () => { this.validateField('login', value) });
+        let value = e.target.value;
+        this.props.setLogin(value);
+        this.validateField('login', value);
     };
 
     handleUserPasswordInput = (e) => {
-        const value = e.target.value;
-        this.setState({password : value},  () => { this.validateField('password', value) });
+        let value = e.target.value;
+        this.props.setPassword(value);
+        this.validateField('password', value);
     };
 
+    userIsReady = () => {
+        let errors = this.state.formErrors;
+        console.log(this.state.formValid);
+        if (!this.state.formValid) errors.all = 'Вам не стыдно? Поля заполните и не буяньте тут';
+        else {
+            this.prepareUser(this.props.user.login, this.props.user.password)
+        }
+    };
+
+    prepareUser(login, password) {
+        console.log(login + " " + password);
+        let params = {
+            login: login,
+            password: password
+        };
+        this.props.registration(params);
+    }
 
     validateField(fieldName, value) {
+
         let fieldValidationErrors = this.state.formErrors;
         let loginValid = this.state.loginValid;
         let passwordValid = this.state.passwordValid;
@@ -45,7 +68,7 @@ class AuthenticationForm extends Component {
 
                 break;
             case 'password':
-                passwordValid = (value.indexOf(' ') < 0)
+                passwordValid = (value.indexOf(' ') < 0);
                 fieldValidationErrors.password = passwordValid ? '' : 'Пробелы в пароле недопустимы';
                 if (!passwordValid) break;
                 passwordValid = value.match('^[a-zA-Z0-9]+$');
@@ -73,21 +96,26 @@ class AuthenticationForm extends Component {
         return(error.length == 0 ? '' : 'input-error' )
     }
 
+
     render() {
+        const {user} = this.props;
         return (
             <form className="form">
                 <div className="inputArea" >
-                    <input className={this.errorClass(this.state.formErrors.login)} type="text" placeholder="Введите логин"  onChange={this.handleUserLoginInput}/>
+                    <input value={user.login} className={this.errorClass(this.state.formErrors.login)} type="text" placeholder="Введите логин"  onChange={this.handleUserLoginInput}/>
                 </div>
                 <div className="inputArea">
-                    <input className={this.errorClass(this.state.formErrors.password)}  type="password" placeholder="Введите пароль" value={this.state.password} onChange={this.handleUserPasswordInput}/>
+                    <input value={user.password} className={this.errorClass(this.state.formErrors.password)}  type="password" placeholder="Введите пароль"  onChange={this.handleUserPasswordInput}/>
                 </div>
-                <div className="errorText">
+                <div className="formErrors">
                     <FormErrors formErrors={this.state.formErrors}/>
+                </div>
+                <div className="formErrors marginTop">
+                    {user.userAnswer === "" ? '' : user.userAnswer}
                 </div>
                 <div className="buttons">
                     <div className="buttonArea">
-                        <button className="checkButtonInside"  disabled={!this.state.formValid}>Регистрация</button>
+                        <button className="checkButtonInside" onClick={this.userIsReady} disabled={!this.state.formValid}>Регистрация</button>
                     </div>
                     <div className="buttonArea">
                         <button className="checkButtonInside"  disabled={!this.state.formValid}>Войти</button>
@@ -97,10 +125,21 @@ class AuthenticationForm extends Component {
             </form>
         )
     }
-
-
-
 }
 
-export default AuthenticationForm;
+const mapStateToProps = store =>{
+    return{
+        user: store.user,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setLogin: login => dispatch(setLogin(login)),
+        setPassword: password => dispatch(setPassword(password)),
+        registration: user => dispatch(registration(user))
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (AuthenticationForm);
 

@@ -30,14 +30,10 @@ class PointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            paramX: '',
-            paramR: '',
-            paramY: '',
             formErrors: {paramX: '', paramR: '', paramY: '', all: ''},
             paramXValid: false,
             paramRValid: false,
-            paramYValid: false
-
+            paramYValid: false,
         };
         this.handleChangeX = this.handleChangeX.bind(this);
         this.handleChangeY = this.handleChangeY.bind(this);
@@ -61,9 +57,9 @@ class PointForm extends Component {
         this.validateField('paramY', value)
     };
 
-    paramsIsReady = (e) => {
+    paramsIsReady = () => {
         let errors = this.state.formErrors;
-        if (!this.state.formValid) errors.all = 'Провести меня вздумали? Поля заполните и не буяньте тут'
+        if (!this.state.formValid) errors.all = 'Провести меня вздумали? Поля заполните и не буяньте тут';
         else {
             this.preparePoint(this.props.app.x, this.props.app.y, this.props.app.r);
         }

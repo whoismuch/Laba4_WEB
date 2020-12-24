@@ -22,21 +22,13 @@ class App extends Component {
 
 const mapStateToProps = store =>{
     return {
-        page: store.page,
-        style: store.style
+        app: store.app,
+        user: store.user
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return{
-        setMarginTop: margin => dispatch(setMarginTop(margin)),
-        setMarginLeft: margin => dispatch(setMarginLeft(margin)),
-        setCof: cof => dispatch(setCof(cof)),
-        setClock: width => dispatch(setClock(width)),
-        setStyle: style => dispatch(setStyle(style)),
-        setWidth: width => dispatch(setWidth(width)),
-        setPageWidth: width =>dispatch(setPageWidth(width)),
-        setDevice: type => dispatch(setDevice(type)),
         setLogin: flag => dispatch(setLogin(flag)),
     }
 };
