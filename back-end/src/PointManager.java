@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.Response;
 
@@ -34,17 +35,20 @@ public class PointManager {
     @POST
     @Path("/check")
     @Consumes("multipart/form-data")
-    public Boolean checkPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException, ServletException {
+    public Boolean checkPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response, @Context HttpHeaders headers) throws IOException, ServletException {
 
         double x = params.get("x");
         double y = params.get("y");
         double dr = params.get("r");
 
 
+        String login = request.getHeader("Authorization");
+
+
         try {
-            Integer r = (int) dr;
+            int r = (int) dr;
             if (x < -4 || x > 4 || y < -3 || y > 5 || r < 1 || r > 4) throw new NumberFormatException();
-            Point point = new Point(x, y, r);
+            Point point = new Point(x, y, r, login);
             if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4d || y <= 0 && x <= 0 && y >= -0.5 * x - (r / 2d))
                 point.setResult(true);
             else point.setResult(false);

@@ -12,6 +12,8 @@ public class Point {
     @SequenceGenerator(name = "generatorPoint", sequenceName = "points_id_seq", initialValue = 1, allocationSize=1)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Column(name = "login", nullable = false)
+    private String user;
     @Column(name = "x", nullable = false)
     private Double x;
     @Column(name = "y", nullable = false)
@@ -27,11 +29,20 @@ public class Point {
         this.r = r;
     }
 
-    public Point (Double x, Double y, Integer r, Boolean result) {
+
+    public String getUser ( ) {
+        return user;
+    }
+
+    public void setUser (String user) {
+        this.user = user;
+    }
+
+    public Point (Double x, Double y, Integer r, String user) {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.result = result;
+        this.user = user;
     }
 
     public Boolean getResult ( ) {

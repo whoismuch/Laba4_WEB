@@ -30,7 +30,6 @@ public class UserManager {
         User user = new User(login, password);
         if (!dataBaseService.doesUserExist(login)) {
             dataBaseService.saveUser(user);
-//            request.getSession().setAttribute("points", new ArrayList<Point>());
             return true;
         }
         else return false;
@@ -43,11 +42,6 @@ public class UserManager {
     public boolean checkUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
         String login = params.get("login");
         String password = params.get("password");
-        if (dataBaseService.doesCurUserExist(login, password)) {
-//            request.getSession().setAttribute("login", login);
-//            request.getSession().setAttribute("points", new ArrayList<Point>());
-            return true;
-        }
-        return false;
+        return dataBaseService.doesCurUserExist(login, password);
     }
 }

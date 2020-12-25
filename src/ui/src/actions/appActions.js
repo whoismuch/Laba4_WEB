@@ -43,7 +43,8 @@ export function sendPoint(point) {
             data: bodyFormData,
             method: 'post',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'Authorization': localStorage.getItem("loginIn")
             }
         })
             .then(result => {
@@ -66,10 +67,10 @@ export function sendPoint(point) {
             payload: null,
 
         });
-        dispatch({
-            type: SET_R,
-            payload: null,
-        });
+        // dispatch({
+        //     type: SET_R,
+        //     payload: null,
+        // });
         document.getElementById("inp").value = "";
     }
 }
