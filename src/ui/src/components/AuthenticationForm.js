@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FormErrors from "./FormErrors";
-import {registration, setAnswer, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
+import {login, registration, setAnswer, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
 import {connect} from 'react-redux';
 import {withRouter} from "react-router"; // Component - класс из пакета react
 
@@ -32,20 +32,25 @@ class AuthenticationForm extends Component {
         this.validateField('password', value);
     };
 
-    userIsReady = (e) => {
+    userIsReady = (e, option) => {
         let errors = this.state.formErrors;
         if (!this.state.formValid) errors.all = 'Вам не стыдно? Поля заполните и не буяньте тут';
         else {
-            this.prepareUser(this.props.user.login, this.props.user.password, e)
+            this.prepareUser(this.props.user.login, this.props.user.password, e, option)
         }
     };
 
-    prepareUser(login, password, event) {
+    prepareUser(login, password, event, option) {
         let params = {
             login: login,
             password: password
         };
-        this.props.registration(params, event);
+        if (option === "login") {
+            this.props.login(params, event);
+        }
+        if (option === "registration") {
+            this.props.registration(params, event);
+        }
     }
 
     validateField(fieldName, value) {
@@ -115,10 +120,10 @@ class AuthenticationForm extends Component {
                 </div>
                 <div className="buttons">
                     <div className="buttonArea">
-                        <button className="checkButtonInside" onClick={this.userIsReady} disabled={!this.state.formValid}>Регистрация</button>
+                        <button className="checkButtonInside" onClick={(event) => this.userIsReady(event, "registration")} disabled={!this.state.formValid}>Регистрация</button>
                     </div>
                     <div className="buttonArea">
-                        <button className="checkButtonInside"  disabled={!this.state.formValid}>Войти</button>
+                        <button className="checkButtonInside" onClick={(event) => this.userIsReady(event, "login")} disabled={!this.state.formValid}>Войти</button>
                     </div>
                 </div>
 
@@ -138,7 +143,8 @@ const mapDispatchToProps = dispatch => {
         setAnswer: answer => dispatch(setAnswer(answer)),
         setLogin: login => dispatch(setLogin(login)),
         setPassword: password => dispatch(setPassword(password)),
-        registration: (user, event) => dispatch(registration(user, event))
+        registration: (user, event) => dispatch(registration(user, event)),
+        login: (user, event) => dispatch(login(user, event))
     }
 };
 

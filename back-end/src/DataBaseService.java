@@ -24,16 +24,23 @@ public class DataBaseService {
         em.persist(point);
     }
 
-    public boolean doesUserExist (String login, String password) throws NoResultException {
+    public boolean doesUserExist (String login) throws NoResultException {
         try {
             User user = (User) em.createQuery("SELECT c FROM User c WHERE c.login LIKE :castLogin").setParameter("castLogin", login).getSingleResult( );
-//            if (!(user == null)) {
-//                if (password.hashCode() == user.getPassword()) return true;
-//            }
-            System.out.println(user);
-
             if (user == null) return false;
             return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
+    public boolean doesCurUserExist (String login, String password) throws NoResultException {
+        try {
+            User user = (User) em.createQuery("SELECT c FROM User c WHERE c.login LIKE :castLogin").setParameter("castLogin", login).getSingleResult( );
+            if (!(user == null)) {
+                if (password.hashCode() == user.getPassword()) return true;
+            }
+            return false;
         } catch (NoResultException e) {
             return false;
         }

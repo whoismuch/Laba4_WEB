@@ -27,9 +27,8 @@ public class UserManager {
     public boolean addUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
         String password = params.get("password");
-        System.out.println(login + " " + password);
         User user = new User(login, password);
-        if (!dataBaseService.doesUserExist(login, password)) {
+        if (!dataBaseService.doesUserExist(login)) {
             dataBaseService.saveUser(user);
             request.getSession( ).setAttribute("login", login);
             request.getSession( ).setAttribute("points", new ArrayList<Point>( ));
@@ -42,12 +41,14 @@ public class UserManager {
 
     @POST
     @Path("/signIn")
-    public void checkUser(@FormParam("login") String login, @FormParam("password") String password, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
-        if (dataBaseService.doesUserExist(login, password)) {
+    public boolean checkUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
+        String login = params.get("login");
+        String password = params.get("password");
+        if (dataBaseService.doesCurUserExist(login, password)) {
             request.getSession().setAttribute("login", login);
             request.getSession().setAttribute("points", new ArrayList<Point>());
-            // How to send message back to client? user: <login> успешно авторизован
+            return true;
         }
-        // How to send message back to client? user: <login> вход не выполнен
+        return false;
     }
 }

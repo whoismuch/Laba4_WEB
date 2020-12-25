@@ -23,7 +23,7 @@ public class CORSFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        System.out.println("CORSFilter HTTP Request: " + request.getMethod());
+//        System.out.println("CORSFilter HTTP Request: " + request.getMethod());
 
         ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin", "http://localhost:3030");
         ((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Methods","GET, OPTIONS, HEAD, PUT, POST");
