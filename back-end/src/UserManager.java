@@ -30,8 +30,7 @@ public class UserManager {
         User user = new User(login, password);
         if (!dataBaseService.doesUserExist(login)) {
             dataBaseService.saveUser(user);
-            request.getSession( ).setAttribute("login", login);
-            request.getSession( ).setAttribute("points", new ArrayList<Point>( ));
+//            request.getSession().setAttribute("points", new ArrayList<Point>());
             return true;
         }
         else return false;
@@ -45,8 +44,8 @@ public class UserManager {
         String login = params.get("login");
         String password = params.get("password");
         if (dataBaseService.doesCurUserExist(login, password)) {
-            request.getSession().setAttribute("login", login);
-            request.getSession().setAttribute("points", new ArrayList<Point>());
+//            request.getSession().setAttribute("login", login);
+//            request.getSession().setAttribute("points", new ArrayList<Point>());
             return true;
         }
         return false;

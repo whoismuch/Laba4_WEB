@@ -2,13 +2,50 @@ import React, {Component} from 'react'; // Component - класс из паке�
 import '../index.css';
 import {connect} from 'react-redux'; // Component - класс из пакета react
 import {sendPoint, setR, setX, setY} from "../actions/appActions";
-
+let circles = [];
 
 class Graphic extends Component {
 
     constructor(props) {
         super(props);
         this.handleClickFrame = this.handleClickFrame.bind(this);
+    }
+
+    componentDidMount() {
+        console.log("lol");
+        this.drawPoints(this.props.app.table, this.props.app.r);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("lol");
+        this.drawPoints(this.props.app.table, this.props.app.r);
+    }
+
+    drawPoints(table, r) {
+        for (const point of table) {
+            console.log("вывожу объект Point");
+            console.log(point.x, point.y, point.r, point.res);
+            this.drawPoint(point.x, point.y, point.r, point.res)
+        }
+    }
+
+    drawPoint(x, y, r, result) {
+        const xmlns = "http://www.w3.org/2000/svg";
+
+        let circle = document.createElementNS(xmlns, "circle");
+
+            circle.setAttribute('cx', 150 + ((x * 100) / (r)));
+            circle.setAttribute('cy', 150 - ((y * 100) / (r)));
+
+        circle.setAttribute('r', 3);
+
+
+        if (result) circle.style.fill = 'green';
+        else circle.style.fill = 'red';
+
+        circles.push(circle);
+        let svg = document.getElementById("svg");
+        svg.appendChild(circle)
     }
 
     render() {
@@ -76,9 +113,7 @@ class Graphic extends Component {
 
         if (this.props.app.r == null) {
             label.innerHTML = "Ну не по-пацански это, R выберите";
-        }
-
-        else {
+        } else {
             label.innerHTML = "";
 
             let x0 = frame.getBoundingClientRect().x;
@@ -90,8 +125,9 @@ class Graphic extends Component {
             let currentX = (event.pageX - centerX) / 100 * this.props.app.r;
             let currentY = (centerY - event.pageY) / 100 * this.props.app.r;
 
-            this.props.setX(currentX);
-            this.props.setY(currentY);
+
+            this.props.setX(currentX.toFixed(2));
+            this.props.setY(currentY.toFixed(2));
 
             let params = {
                 x: currentX,

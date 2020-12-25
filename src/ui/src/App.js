@@ -16,10 +16,10 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        console.log(localStorage.getItem("loginIn"));
-        localStorage.setItem("loginIn", undefined);
-        this.props.setSignIn(false);
-        console.log(localStorage.getItem("loginIn"));
+        // console.log(localStorage.getItem("loginIn"));
+        // localStorage.setItem("loginIn", undefined);
+        // this.props.setSignIn(false);
+        // console.log(localStorage.getItem("loginIn"));
         if (localStorage.getItem("loginIn") != null && localStorage.getItem("loginIn") !== "undefined") {
             this.props.setSignIn(true)
         } else {

@@ -38,7 +38,6 @@ export function sendPoint(point) {
     bodyFormData.append('r', point.r);
 
     return dispatch => {
-        let header = "localhost";
         axios({
             url: 'http://localhost:8999/back_end_war_exploded/api/point/check',
             data: bodyFormData,
@@ -48,12 +47,17 @@ export function sendPoint(point) {
             }
         })
             .then(result => {
-                console.log(result);
-                if (result.status == 200) {
-                    localStorage.setItem("loginIn", header);
+                console.log(result.data);
+                if (result.data != null) {
+                let fullPoint = {
+                    x: point.x,
+                    y: point.y,
+                    r: point.r,
+                    res: result.data
+                };
                 dispatch({
                     type: ADD_POINT,
-                    payload: result.data,
+                    payload: fullPoint,
                 })
             }})
             .catch(data => console.log(data));
