@@ -32,6 +32,7 @@ public class UserManager {
         dataBaseService.saveUser(user);
         request.getSession().setAttribute("login", login);
         request.getSession().setAttribute("points", new ArrayList<Point>());
+        System.out.println(response.getStatus());
         // How to send message back to client? msg: user: <login> успешно зарегистрирован
     }
 

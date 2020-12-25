@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import FormErrors from "./FormErrors";
 import {registration, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
-import {connect} from 'react-redux'; // Component - класс из пакета react
+import {connect} from 'react-redux';
+import {withRouter} from "react-router"; // Component - класс из пакета react
 
 
 class AuthenticationForm extends Component {
@@ -31,22 +32,20 @@ class AuthenticationForm extends Component {
         this.validateField('password', value);
     };
 
-    userIsReady = () => {
+    userIsReady = (e) => {
         let errors = this.state.formErrors;
-        console.log(this.state.formValid);
         if (!this.state.formValid) errors.all = 'Вам не стыдно? Поля заполните и не буяньте тут';
         else {
-            this.prepareUser(this.props.user.login, this.props.user.password)
+            this.prepareUser(this.props.user.login, this.props.user.password, e)
         }
     };
 
-    prepareUser(login, password) {
-        console.log(login + " " + password);
+    prepareUser(login, password, event) {
         let params = {
             login: login,
             password: password
         };
-        this.props.registration(params);
+        this.props.registration(params, event);
     }
 
     validateField(fieldName, value) {
@@ -137,9 +136,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setLogin: login => dispatch(setLogin(login)),
         setPassword: password => dispatch(setPassword(password)),
-        registration: user => dispatch(registration(user))
+        registration: (user, event) => dispatch(registration(user, event))
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps) (AuthenticationForm);
+export default (withRouter(connect(mapStateToProps,mapDispatchToProps) (AuthenticationForm)));
 

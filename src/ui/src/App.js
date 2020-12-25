@@ -1,26 +1,47 @@
 import React, {Component} from 'react';
 
 import './App.css';
-import {hashHistory, Route, Router} from "react-router";
+// import {hashHistory, Route, Router} from "react-router";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+// import {Switch, Route, Router} from "react-router"
 import Start from "./Start";
 import Main from "./Main";
-import Test from "./Test";
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {setSignIn} from "./actions/userActions";
+
+// import {setSignIn} from "./actions/userActions";
 
 class App extends Component {
 
+    constructor(props) {
+        super(props);
+        // console.log(localStorage.getItem("loginIn"));
+        // localStorage.setItem("loginIn", undefined);
+        // this.props.setSignIn(false);
+        // console.log(localStorage.getItem("loginIn"));
+        if (localStorage.getItem("loginIn") != null && localStorage.getItem("loginIn") !== "undefined") {
+            this.props.setSignIn(true)
+        } else {
+            this.props.setSignIn(false)
+        }
+    }
+
     render() {
         return (
-            <Router history={hashHistory}>
-                <Route exact path="/" component={Start}/>
-                <Route exact path="/main" component={Main}/>
-                <Route exact path="/test" component={Test}/>
-            </Router>
+            <div>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path="/" component={Start}/>
+                        <Route path="/main" component={Main}/>
+                    </Switch>
+                </BrowserRouter>
+            </div>
         )
     }
 };
 
-const mapStateToProps = store =>{
+const mapStateToProps = store => {
     return {
         app: store.app,
         user: store.user
@@ -28,15 +49,15 @@ const mapStateToProps = store =>{
 };
 
 const mapDispatchToProps = dispatch => {
-    return{
-        setLogin: flag => dispatch(setLogin(flag)),
+    return {
+        setSignIn: flag => dispatch(setSignIn(flag)),
     }
 };
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
-)(App)
+)(App));
 //
 //     addPoint() {
 //         console.log('addPoint', this.trackInput.value);

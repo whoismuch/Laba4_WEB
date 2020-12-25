@@ -3,7 +3,7 @@ import {SET_R, SET_X} from "./appActions";
 
 export const LOGIN = 'LOGIN';
 export const SET_LOGIN = 'SET_LOGIN';
-export const SET_PASSWORD= 'SET_PASSWORD';
+export const SET_PASSWORD = 'SET_PASSWORD';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
 export const SET_SIGN_IN = "SET_SIGN_IN";
@@ -23,12 +23,15 @@ export function setPassword(password) {
     }
 }
 
-export function registration(user) {
+export function registration(user, event) {
+
+    event.preventDefault(event);
 
     let bodyFormData = new FormData();
     bodyFormData.append('login', user.login);
     bodyFormData.append('password', user.password);
 
+    console.log("я отправляю данные");
     return dispatch => {
         axios({
             method: "post",
@@ -39,11 +42,17 @@ export function registration(user) {
             }
         })
             .then(result => {
-                console.log(result);
-                if (Number(result.status) === 204) {
+                console.log("я заебалась");
+                if (Number(result.status) === 200 || Number(result.status) === 201 || Number(result.status) === 204 ) {
+                    console.log("я устанвливаю токен");
+                    localStorage.setItem("loginIn", user.login);
                     dispatch({
                         type: REGISTER,
                         payload: "Вы успешно зарегистрировались"
+                    });
+                    dispatch({
+                        type: SET_SIGN_IN,
+                        payload: true
                     })
                 } else {
                     dispatch({
@@ -69,5 +78,12 @@ export function registration(user) {
             payload: '',
         });
 
+    }
+}
+
+export function setSignIn(isLogin) {
+    return {
+        type: SET_SIGN_IN,
+        payload: isLogin
     }
 }

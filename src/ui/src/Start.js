@@ -3,13 +3,17 @@ import {connect} from 'react-redux'; // Component - класс из пакета
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AuthenticationForm from "./components/AuthenticationForm";
+import {Redirect} from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+
 class Start extends Component {
 
 
     render() {
-        const {header} = this.props;
+        const {header, user} = this.props;
         return (
             <div>
+                {(user.isLogin  && <Redirect to={"/main"}/>)}
                 <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderStart">
                     <label className="title">Необходимо авторизоваться</label>
@@ -23,12 +27,14 @@ class Start extends Component {
 }
 
 const mapStateToProps = store => {
+    console.log(store.user.isLogin);
     return {
         header: store.header,
+        user: store.user
     }
 };
 
-export default connect(mapStateToProps)(Start);
+export default (withRouter(connect(mapStateToProps)(Start)));
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.
