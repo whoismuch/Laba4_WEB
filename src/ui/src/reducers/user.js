@@ -4,7 +4,8 @@ import {
     REGISTER,
     SET_SIGN_IN,
     SET_LOGIN,
-    SET_PASSWORD
+    SET_PASSWORD,
+    SET_ANSWER
 } from "../actions/userActions";
 
 const initialState = {
@@ -20,6 +21,8 @@ export function userReducer(state = initialState, action) {
         case REGISTER:
             return {...state, userAnswer: action.payload};
         case LOGIN:
+            return {...state, userAnswer: action.payload};
+        case SET_ANSWER:
             return {...state, userAnswer: action.payload};
         case LOGOUT:
             return {...state, isLogin: action.payload,};

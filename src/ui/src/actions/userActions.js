@@ -4,6 +4,7 @@ import {SET_R, SET_X} from "./appActions";
 export const LOGIN = 'LOGIN';
 export const SET_LOGIN = 'SET_LOGIN';
 export const SET_PASSWORD = 'SET_PASSWORD';
+export const SET_ANSWER = 'SET_ANSWER';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
 export const SET_SIGN_IN = "SET_SIGN_IN";
@@ -13,6 +14,13 @@ export function setLogin(login) {
     return {
         type: SET_LOGIN,
         payload: login
+    }
+}
+
+export function setAnswer(answer) {
+    return {
+        type: SET_ANSWER,
+        payload: answer
     }
 }
 
@@ -42,8 +50,10 @@ export function registration(user, event) {
             }
         })
             .then(result => {
+                console.log(result.data);
                 console.log("я заебалась");
-                if (Number(result.status) === 200 || Number(result.status) === 201 || Number(result.status) === 204 ) {
+                console.log(result.status);
+                if (result.data) {
                     console.log("я устанвливаю токен");
                     localStorage.setItem("loginIn", user.login);
                     dispatch({

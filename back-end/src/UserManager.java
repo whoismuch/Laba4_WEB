@@ -24,15 +24,19 @@ public class UserManager {
     @POST
     @Path("/signUp")
     @Consumes("multipart/form-data")
-    public void addUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
+    public boolean addUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
         String password = params.get("password");
         System.out.println(login + " " + password);
         User user = new User(login, password);
-        dataBaseService.saveUser(user);
-        request.getSession().setAttribute("login", login);
-        request.getSession().setAttribute("points", new ArrayList<Point>());
-        System.out.println(response.getStatus());
+        if (!dataBaseService.doesUserExist(login, password)) {
+            dataBaseService.saveUser(user);
+            request.getSession( ).setAttribute("login", login);
+            request.getSession( ).setAttribute("points", new ArrayList<Point>( ));
+            return true;
+        }
+        else return false;
+
         // How to send message back to client? msg: user: <login> успешно зарегистрирован
     }
 

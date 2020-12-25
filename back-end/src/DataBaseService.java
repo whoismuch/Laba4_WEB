@@ -15,25 +15,29 @@ public class DataBaseService {
 
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void saveUser(User user) throws Exception {
+    public void saveUser (User user) throws Exception {
         em.persist(user);
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void savePoint(Point point) throws Exception {
+    public void savePoint (Point point) throws Exception {
         em.persist(point);
     }
 
-    public boolean doesUserExist(String login, String password) throws NoResultException {
+    public boolean doesUserExist (String login, String password) throws NoResultException {
         try {
-            User user = (User) em.createQuery("from User where login = :login").setParameter("login", login).getSingleResult();
-            if (!(user == null)) {
-                if (password.hashCode() == user.getPassword()) return true;
-            }
-            return false;
-        }catch (NoResultException e){return false;}
-    }
+            User user = (User) em.createQuery("SELECT c FROM User c WHERE c.login LIKE :castLogin").setParameter("castLogin", login).getSingleResult( );
+//            if (!(user == null)) {
+//                if (password.hashCode() == user.getPassword()) return true;
+//            }
+            System.out.println(user);
 
+            if (user == null) return false;
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 
 
 }

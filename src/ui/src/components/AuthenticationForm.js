@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FormErrors from "./FormErrors";
-import {registration, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
+import {registration, setAnswer, setLogin, setPassword} from "../actions/userActions"; // Component - класс из пакета react
 import {connect} from 'react-redux';
 import {withRouter} from "react-router"; // Component - класс из пакета react
 
@@ -50,6 +50,7 @@ class AuthenticationForm extends Component {
 
     validateField(fieldName, value) {
 
+        this.props.setAnswer('');
         let fieldValidationErrors = this.state.formErrors;
         let loginValid = this.state.loginValid;
         let passwordValid = this.state.passwordValid;
@@ -134,6 +135,7 @@ const mapStateToProps = store =>{
 
 const mapDispatchToProps = dispatch => {
     return {
+        setAnswer: answer => dispatch(setAnswer(answer)),
         setLogin: login => dispatch(setLogin(login)),
         setPassword: password => dispatch(setPassword(password)),
         registration: (user, event) => dispatch(registration(user, event))
