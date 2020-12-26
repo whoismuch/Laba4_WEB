@@ -3,6 +3,7 @@ export const SET_Y = 'SET_Y';
 export const SET_R = 'SET_R';
 export const ADD_POINT = "ADD_POINT";
 export const SET_TABLE = "SET_TABLE";
+export const SET_ANSWER = "SET_ANSWER";
 
 import axios from 'axios';
 
@@ -27,6 +28,12 @@ export function setY(Y) {
     }
 }
 
+export function setAnswer(answer) {
+    return {
+        type: SET_ANSWER,
+        payload: answer
+    }
+}
 export function sendPoint(point) {
 
 
@@ -48,16 +55,27 @@ export function sendPoint(point) {
             .then(result => {
                 console.log(result.data);
                 if (result.data != null) {
+                    dispatch({
+                        type: SET_TABLE,
+                        payload: result.data,
+                    })
+                } else {
+                    dispatch({
+                        type: SET_ANSWER,
+                        payload: "Обмануть меня вздумали?"
+                    })
+                }
+            })
+            .catch(data => {
                 dispatch({
-                    type: SET_TABLE,
-                    payload: result.data,
-                })
-            }})
-            .catch(data => console.log(data));
+                    type: SET_ANSWER,
+                    payload: "Потеряно соединение"
+                });
+                console.log(data)
+            });
         dispatch({
             type: SET_X,
             payload: null,
-
         });
         document.getElementById("inp").value = "";
     }
@@ -70,14 +88,20 @@ export function getPoints() {
         axios({
             url: 'http://localhost:8999/back_end_war_exploded/api/point/getPoints',
             method: 'post',
-            headers: { Authorization: header}
-        }).then(data =>{
+            headers: {Authorization: header}
+        }).then(data => {
             console.log(data.data);
             dispatch({
                 type: SET_TABLE,
                 payload: data.data
             })
-        }).catch(data => console.log(data));
+        }).catch(data => {
+            dispatch({
+                type: SET_ANSWER,
+                payload: "Потеряно соединение"
+            });
+            console.log(data)
+        });
     }
 
 }

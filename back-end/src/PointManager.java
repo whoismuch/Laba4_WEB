@@ -40,10 +40,8 @@ public class PointManager {
         double x = params.get("x");
         double y = params.get("y");
         double dr = params.get("r");
-
-
+        
         String login = request.getHeader("Authorization");
-
 
         try {
             int r = (int) dr;
@@ -57,7 +55,6 @@ public class PointManager {
             pointList.add(point);
             return pointList;
         } catch (NumberFormatException ex) {
-            // Сказать клиенту, что он нас обманул.
             return null;
         } catch (Exception e) {
             e.printStackTrace( );

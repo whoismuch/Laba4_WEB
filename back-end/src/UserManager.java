@@ -34,7 +34,6 @@ public class UserManager {
         }
         else return false;
 
-        // How to send message back to client? msg: user: <login> успешно зарегистрирован
     }
 
     @POST

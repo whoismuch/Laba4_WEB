@@ -3,7 +3,7 @@ import {Dropdown} from "react-toolbox/lib/dropdown";
 import {Input} from "react-toolbox/lib/input";
 import FormErrors from "./FormErrors";
 import {connect} from 'react-redux'; // Component - класс из пакета react
-import {sendPoint, setR, setX, setY} from "../actions/appActions";
+import {sendPoint, setAnswer, setR, setX, setY} from "../actions/appActions";
 
 const paramXValues = [
     {value: '-4', label: '-4'},
@@ -77,6 +77,8 @@ class PointForm extends Component {
 
 
     validateField(fieldName, value) {
+
+        this.props.setAnswer('');
         let fieldValidationErrors = this.state.formErrors;
         let paramXValid = this.state.paramXValid;
         let paramYValid = this.state.paramYValid;
@@ -155,6 +157,9 @@ class PointForm extends Component {
                 <div className="errorText">
                     <FormErrors formErrors={this.state.formErrors}/>
                 </div>
+                <div className="formErrors marginTop">
+                    {app.answer === "" ? '' : app.answer}
+                </div>
                 <div className="checkButton">
                     <button className="checkButtonInside" onClick={this.paramsIsReady}
                             disabled={!this.state.formValid}>Проверить
@@ -178,6 +183,7 @@ const mapDispatchToProps = dispatch => {
         setX: x => dispatch(setX(x)),
         setR: r => dispatch(setR(r)),
         setY: y => dispatch(setY(y)),
+        setAnswer: answer => dispatch(setAnswer(answer)),
         sendPoint: point => dispatch(sendPoint(point))
     }
 };
