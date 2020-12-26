@@ -4,7 +4,6 @@ import {connect} from 'react-redux'; // Component - класс из пакета
 import {sendPoint, setR, setX, setY} from "../actions/appActions";
 
 let circles = [];
-let svg = document.getElementById("svg");
 
 class Graphic extends Component {
 
