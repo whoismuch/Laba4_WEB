@@ -16,8 +16,8 @@ class Start extends Component {
                 {(user.isLogin  && <Redirect to={"/main"}/>)}
                 <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderStart">
-                    <label className="title">Необходимо авторизоваться</label>
-                    <label className="title smallTitle">*Сожалею, это не моя прихоть*</label>
+                    <label className="title" id="title">Необходимо авторизоваться</label>
+                    <label className="title smallTitle" id="title">*Сожалею, это не моя прихоть*</label>
                     <AuthenticationForm/>
                 </div>
                 <Footer/>

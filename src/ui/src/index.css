@@ -15,17 +15,165 @@ canvas {
     margin-right: 30px;
 }
 
-.header {
-    color: purple;
-    font-size: 35px;
+@media (min-width: 708px) and (max-width: 1169px ) {
+
+    .header {
+        color: purple;
+        font-size: 35px;
+        text-align: center;
+        top: 0;
+        margin-bottom: 30px;
+        background: papayawhip;
+        padding: 3px;
+        padding-top: 1px;
+        border-radius: 20px; /* Уголки */
+        /*min-width: 708px;*/
+        /*max-width: 1169px;*/
+        position: page;
+        width: 100%;
+    }
+
+    .centerBorderMain {
+        background: white; /* Цвет фона */
+        color: black; /* Цвет текста */
+        /* Поля вокруг текста */
+        padding: 40px 30px 30px;
+        border-radius: 20px; /* Уголки */
+        margin: auto;
+        min-width: 650px;
+        width: 70%;
+        height: 340px;
+        opacity: 0.77;
+        overflow: scroll;
+    }
+
+    .formAndGraphic {
+        margin: auto;
+        display: flex;
+    }
+
+    .commonGroup {
+        display: block;
+        width: 55%;
+        margin-top: 5px;
+        margin-right: 3%;
+    }
+
+    .commonGroup > .fillItPls, .inputArea {
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        border-radius: 15px;
+        opacity: 1;
+        width: 100%;
+    }
+
+    .fillItPls {
+        margin-bottom: 15px;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+
+    .commonGroup > .XR > .chooseR, .selectX {
+        width: 50%;
+        height: 45px;
+        text-align: center;
+        padding: 10px 10px 45px 10px;
+    }
+
+
+    .commonGroup > .XR > .selectX {
+        margin-left: 10%;
+    }
+
+
+    .commonGroup > .enterY {
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        border-radius: 15px;
+        opacity: 1;
+        padding: 0px 7px 43px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        width: 97%;
+        height: 30px;
+    }
+
+    #inp {
+        font-size: medium;
+        height: 35px;
+        width: 90%;
+        border-color: #800080;
+        border-radius: 5px;
+        border-width: medium;
+    }
+
+
+    table {
+        margin-top: 60px;
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        width: 100%; /* Ширина таблицы */
+        border-spacing: 1px; /* Расстояние между ячейками */
+        text-align: center;
+        overflow: scroll;
+    }
+
+
+
+    .formErrors {
+        color: red;
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+
+}
+
+.formErrorsAuth {
+    color: red;
+    font-size: 15px;
     text-align: center;
-    top: 0;
-    background: papayawhip;
-    padding: 3px;
-    padding-top: 1px;
-    border-radius: 20px; /* Уголки */
+    position: fixed;
+    width: 350px;
+}
+
+label#title {
+    padding-bottom: 10px;
+    margin-left: 7px;
+}
+
+.errorText {
+    text-align: center;
     width: 100%;
 }
+
+.svg > .svgErrorText {
+    width: 300px;
+    color: red;
+    text-align: center;
+}
+
+.svg > .svgErrors {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    color: red;
+}
+
+/*.header {*/
+/*    color: purple;*/
+/*    font-size: 35px;*/
+/*    text-align: center;*/
+/*    top: 0;*/
+/*    background: papayawhip;*/
+/*    padding: 3px;*/
+/*    padding-top: 1px;*/
+/*    border-radius: 20px; !* Уголки *!*/
+/*    width: 100%;*/
+/*}*/
 
 .footer {
     position: fixed;
@@ -36,13 +184,6 @@ canvas {
     width: 100%;
 }
 
-.button {
-    background-color: papayawhip;
-    border-color: #800080;
-    border-radius: 5px;
-    height: 25px;
-    width: 25px;
-}
 
 
 .checkButtonInside {
@@ -60,10 +201,10 @@ canvas {
     color: black;
     border-radius: 15px;
     opacity: 1;
-    padding: 7px 18px 12px;
+    padding: 10px 18px 12px;
     width: 130px;
     height: 30px;
-    margin: 45px auto auto;
+    margin: 20px auto auto;
 }
 
 .link {
@@ -74,10 +215,6 @@ canvas {
     position: absolute;
 }
 
-a#move {
-    margin-top: 40px;
-    font-size: 25px;
-}
 
 a#github {
     text-decoration: none;
@@ -85,11 +222,6 @@ a#github {
     font-size: 32px;
 }
 
-
-label {
-    padding-bottom: 10px;
-    margin-left: 7px;
-}
 
 .centerBorderStart {
     background: white; /* Цвет фона */
@@ -101,25 +233,24 @@ label {
     width: 520px;
     height: 310px;
     opacity: 0.77;
-    overflow: scroll;
 }
 
-.centerBorderMain {
-    background: white; /* Цвет фона */
-    color: black; /* Цвет текста */
-    /* Поля вокруг текста */
-    padding: 50px 70px 70px;
-    border-radius: 20px; /* Уголки */
-    margin: 30px auto auto;
-    width: 700px;
-    height: 310px;
-    opacity: 0.77;
-    overflow: scroll;
-}
+/*.centerBorderMain {*/
+/*    background: white; !* Цвет фона *!*/
+/*    color: black; !* Цвет текста *!*/
+/*    !* Поля вокруг текста *!*/
+/*    padding: 50px 70px 70px;*/
+/*    border-radius: 20px; !* Уголки *!*/
+/*    margin: 30px auto auto;*/
+/*    width: 700px;*/
+/*    height: 310px;*/
+/*    opacity: 0.77;*/
+/*    overflow: scroll;*/
+/*}*/
 
-.formAndGraphic {
-    display: flex;
-}
+/*.formAndGraphic {*/
+/*    display: flex;*/
+/*}*/
 
 /*.ff, .time-and-link {*/
 /*    display: flex;*/
@@ -132,71 +263,62 @@ label {
     opacity: 1;
 }
 
-.commonGroup > .fillItPls, .inputArea {
-    background: rgba(159, 19, 255, 0.37);
-    color: black;
-    border-radius: 15px;
-    opacity: 1;
-    width: 100%
-}
+/*.commonGroup > .fillItPls, .inputArea {*/
+/*    background: rgba(159, 19, 255, 0.37);*/
+/*    color: black;*/
+/*    border-radius: 15px;*/
+/*    opacity: 1;*/
+/*    width: 100%*/
+/*}*/
 
 .dropdown {
     font-size: medium;
     border-color: #800080;
-
-    /*align-content: center;*/
 }
 
 
-.commonGroup > .XR > .chooseR {
-    width: 135px;
-    height: 45px;
-    padding: 10px 13px 45px 18px;
-}
+/*.commonGroup > .XR > .chooseR {*/
+/*    width: 135px;*/
+/*    height: 45px;*/
+/*    padding: 10px 13px 45px 18px;*/
+/*}*/
 
 /*.chooseRTitle {*/
 /*    margin-bottom: 10px;*/
 /*}*/
 
-.commonGroup > .XR > .selectX {
-    margin-left: 30px;
-    width: 135px;
-    height: 45px;
-    padding: 10px 13px 45px 18px;
-}
+/*.commonGroup > .XR > .selectX {*/
+/*    margin-left: 30px;*/
+/*    width: 135px;*/
+/*    height: 45px;*/
+/*    padding: 10px 13px 45px 18px;*/
+/*}*/
 
-.commonGroup > .ui-fluid {
-    width: 120px;
-}
 
-.commonGroup > .enterY {
-    background: rgba(159, 19, 255, 0.37);
-    color: black;
-    border-radius: 15px;
-    opacity: 1;
-    padding: 0px 7px 43px;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    width: 350px;
-    height: 30px;
 
-}
+/*.commonGroup > .enterY {*/
+/*    background: rgba(159, 19, 255, 0.37);*/
+/*    color: black;*/
+/*    border-radius: 15px;*/
+/*    opacity: 1;*/
+/*    padding: 0px 7px 43px;*/
+/*    margin-top: 20px;*/
+/*    margin-bottom: 0px;*/
+/*    width: 350px;*/
+/*    height: 30px;*/
 
-#inp {
-    font-size: medium;
-    height: 35px;
-    border-color: #800080;
-    border-radius: 5px;
-    border-width: medium;
-}
+/*}*/
 
-.ui-spinner-input {
-    background-color: papayawhip;
-    border-color: #800080;
-    border-radius: 5px;
-    border-width: 2px;
-    font-family: "Comic Sans MS";
-}
+/*#inp {*/
+/*    font-size: medium;*/
+/*    height: 35px;*/
+/*    width: 100%;*/
+/*    border-color: #800080;*/
+/*    border-radius: 5px;*/
+/*    border-width: medium;*/
+/*}*/
+
+
 
 .inputArea, .commonGroup > .inputArea {
     padding: 15px 20px 25px;
@@ -228,34 +350,37 @@ input::placeholder {
 
 }
 
-.input-error {
-    border-color: red !important;
-}
 
-.errorText {
-    text-align: center;
-    width: inherit;
-}
+/*.errorText {*/
+/*    text-align: center;*/
+/*    !*position: fixed;*!*/
+/*    width: inherit;*/
+/*}*/
 
-.svg > .errorText {
-    text-align: center;
-    width: inherit;
-    color: red;
-}
+/*.svg > .errorText {*/
+/*    text-align: center;*/
+/*    width: inherit;*/
+/*    color: red;*/
+/*}*/
 
-.formErrors {
-    color: red;
-    font-size: 15px;
-    text-align: center;
-    position: fixed;
-    width: inherit;
-}
+/*.formErrorsAuth {*/
+/*    color: red;*/
+/*    font-size: 15px;*/
+/*    text-align: center;*/
+/*    position: fixed;*/
+/*    width: 50%;*/
+/*}*/
 
-.marginTop {
-    margin-top: 5px;
-}
+/*.formErrors {*/
+/*    color: red;*/
+/*    font-size: 15px;*/
+/*    text-align: center;*/
+/*    width: 100%;*/
+/*}*/
+
 
 .buttons {
+    position: absolute;
     margin-top: 50px;
     display: flex;
 }
@@ -296,61 +421,43 @@ input::placeholder {
 }
 
 
-.button input {
-    width: 130px;
-    height: 28px;
 
-}
-
-
-.commonGroup {
-    display: block;
-    width: 365px;
-    margin-right: 55px;
-}
+/*.commonGroup {*/
+/*    display: block;*/
+/*    width: 365px;*/
+/*    margin-right: 55px;*/
+/*}*/
 
 .XR {
     display: flex;
 
 }
 
-.fillItPls {
-    margin-bottom: 15px;
-    padding: 5px;
-    text-align: center;
-}
+/*.fillItPls {*/
+/*    margin-bottom: 15px;*/
+/*    padding: 5px;*/
+/*    text-align: center;*/
+/*}*/
 
-.svg {
-    margin-bottom: 20px;
-}
+/*.svg {*/
+/*    margin-bottom: 20px;*/
+/*}*/
 
 .axis-text {
     font-size: 15px;
     font-weight: bold;
 }
 
-select {
-    text-align-last: center;
-}
 
-.error {
-    border-color: red;
-}
-
-.hiddenR-error ~ input[type=submit] {
-    border-width: 2.5px;
-    border-color: red !important;
-}
-
-table {
-    margin-top: 40px;
-    background: rgba(159, 19, 255, 0.37);
-    color: black;
-    width: 100%; /* Ширина таблицы */
-    border-spacing: 1px; /* Расстояние между ячейками */
-    text-align: center;
-    overflow: scroll;
-}
+/*table {*/
+/*    margin-top: 60px;*/
+/*    background: rgba(159, 19, 255, 0.37);*/
+/*    color: black;*/
+/*    width: 100%; !* Ширина таблицы *!*/
+/*    border-spacing: 1px; !* Расстояние между ячейками *!*/
+/*    text-align: center;*/
+/*    overflow: scroll;*/
+/*}*/
 
 td, th, tr {
     width: 20%;
@@ -375,19 +482,4 @@ circle#target-dot {
     color: red;
 }
 
-
-.centerBorderT {
-    background: white; /* Цвет фона */
-    color: black; /* Цвет текста */
-    padding-left: 70px; /* Поля вокруг текста */
-    padding-right: 70px;
-    padding-bottom: 70px;
-    border-radius: 20px; /* Уголки */
-    margin: auto;
-    margin-top: 75px;
-    width: 700px;
-    height: 360px;
-    opacity: 0.77;
-    overflow: scroll;
-}
 

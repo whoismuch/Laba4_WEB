@@ -50,8 +50,8 @@ public class PointManager {
             if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4d || y <= 0 && x <= 0 && y >= -0.5 * x - (r / 2d))
                 point.setResult(true);
             else point.setResult(false);
-            dataBaseService.savePoint(point);
             List<Point> pointList = dataBaseService.getPoints(login);
+            dataBaseService.savePoint(point);
             pointList.add(point);
             return pointList;
         } catch (NumberFormatException ex) {

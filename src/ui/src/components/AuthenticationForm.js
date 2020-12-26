@@ -112,11 +112,8 @@ class AuthenticationForm extends Component {
                 <div className="inputArea">
                     <input value={user.password} className={this.errorClass(this.state.formErrors.password)}  type="password" placeholder="Введите пароль"  onChange={this.handleUserPasswordInput}/>
                 </div>
-                <div className="formErrors">
-                    <FormErrors formErrors={this.state.formErrors}/>
-                </div>
-                <div className="formErrors marginTop">
-                    {user.userAnswer === "" ? '' : user.userAnswer}
+                <div className="formErrorsAuth">
+                    <FormErrors formErrors={this.state.formErrors} answer={user.userAnswer}/>
                 </div>
                 <div className="buttons">
                     <div className="buttonArea">

@@ -154,11 +154,8 @@ class PointForm extends Component {
                 <div className="enterY">
                     <Input onChange={this.handleChangeY} placeholder="Введите значение Y от -3 до 5" id="inp"/>
                 </div>
-                <div className="errorText">
-                    <FormErrors formErrors={this.state.formErrors}/>
-                </div>
-                <div className="formErrors marginTop">
-                    {app.answer === "" ? '' : app.answer}
+                <div className="formErrors">
+                    <FormErrors formErrors={this.state.formErrors} answer={this.props.app.answer}/>
                 </div>
                 <div className="checkButton">
                     <button className="checkButtonInside" onClick={this.paramsIsReady}

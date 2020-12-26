@@ -12,7 +12,7 @@ module.exports = {
     devtool: 'source-map',
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
         filename: '[name].js'
     },
     module: {

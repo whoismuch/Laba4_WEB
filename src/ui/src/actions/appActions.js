@@ -90,7 +90,6 @@ export function getPoints() {
             method: 'post',
             headers: {Authorization: header}
         }).then(data => {
-            console.log(data.data);
             dispatch({
                 type: SET_TABLE,
                 payload: data.data
