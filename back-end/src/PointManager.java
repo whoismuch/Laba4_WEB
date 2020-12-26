@@ -35,7 +35,7 @@ public class PointManager {
     @POST
     @Path("/check")
     @Consumes("multipart/form-data")
-    public Boolean checkPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response, @Context HttpHeaders headers) throws IOException, ServletException {
+    public List<Point> checkPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response, @Context HttpHeaders headers) throws IOException, ServletException {
 
         double x = params.get("x");
         double y = params.get("y");
@@ -52,11 +52,10 @@ public class PointManager {
             if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4d || y <= 0 && x <= 0 && y >= -0.5 * x - (r / 2d))
                 point.setResult(true);
             else point.setResult(false);
-//            ArrayList<Point> pointList = (ArrayList<Point>) request.getSession( ).getAttribute("points");
-//            ArrayList<Point> pointList = new ArrayList<>();
-//            pointList.add(point);
             dataBaseService.savePoint(point);
-            return point.getResult();
+            List<Point> pointList = dataBaseService.getPoints(login);
+            pointList.add(point);
+            return pointList;
         } catch (NumberFormatException ex) {
             // Сказать клиенту, что он нас обманул.
             return null;
@@ -69,8 +68,11 @@ public class PointManager {
 
     @POST
     @Path("/getPoints")
-    public ArrayList<Point> getPoints (@Context HttpServletRequest request, @Context HttpServletResponse response) {
-        return (ArrayList<Point>) request.getSession( ).getAttribute("points");
+    public List<Point> getPoints (@Context HttpServletRequest request, @Context HttpServletResponse response) {
+        System.out.println("client sent me request");
+        String login = request.getHeader("Authorization");
+
+        return dataBaseService.getPoints(login);
     }
 
 }

@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class DataBaseService {
@@ -43,6 +45,17 @@ public class DataBaseService {
             return false;
         } catch (NoResultException e) {
             return false;
+        }
+    }
+
+    public List<Point> getPoints(String login) {
+        try {
+            List<Point> points = em.createQuery("SELECT p FROM Point p WHERE p.login LIKE :castLogin", Point.class).setParameter("castLogin", login).getResultList();
+            return points;
+
+        } catch (NoResultException e) {
+            System.out.println("fuck");
+            return null;
         }
     }
 

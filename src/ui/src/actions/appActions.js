@@ -2,11 +2,9 @@ export const SET_X = 'SET_X';
 export const SET_Y = 'SET_Y';
 export const SET_R = 'SET_R';
 export const ADD_POINT = "ADD_POINT";
+export const SET_TABLE = "SET_TABLE";
 
 import axios from 'axios';
-
-
-
 
 export function setR(R) {
     return {
@@ -50,15 +48,9 @@ export function sendPoint(point) {
             .then(result => {
                 console.log(result.data);
                 if (result.data != null) {
-                let fullPoint = {
-                    x: point.x,
-                    y: point.y,
-                    r: point.r,
-                    res: result.data
-                };
                 dispatch({
-                    type: ADD_POINT,
-                    payload: fullPoint,
+                    type: SET_TABLE,
+                    payload: result.data,
                 })
             }})
             .catch(data => console.log(data));
@@ -67,10 +59,25 @@ export function sendPoint(point) {
             payload: null,
 
         });
-        // dispatch({
-        //     type: SET_R,
-        //     payload: null,
-        // });
         document.getElementById("inp").value = "";
     }
+}
+
+export function getPoints() {
+    console.log("I get points");
+    return dispatch => {
+        let header = localStorage.getItem('loginIn');
+        axios({
+            url: 'http://localhost:8999/back_end_war_exploded/api/point/getPoints',
+            method: 'post',
+            headers: { Authorization: header}
+        }).then(data =>{
+            console.log(data.data);
+            dispatch({
+                type: SET_TABLE,
+                payload: data.data
+            })
+        }).catch(data => console.log(data));
+    }
+
 }

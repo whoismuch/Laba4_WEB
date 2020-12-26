@@ -3,6 +3,7 @@ import '../index.css';
 import {connect} from 'react-redux'; // Component - класс из пакета react
 import {sendPoint, setR, setX, setY} from "../actions/appActions";
 let circles = [];
+let svg = document.getElementById("svg");
 
 class Graphic extends Component {
 
@@ -11,21 +12,29 @@ class Graphic extends Component {
         this.handleClickFrame = this.handleClickFrame.bind(this);
     }
 
-    componentDidMount() {
-        console.log("lol");
-        this.drawPoints(this.props.app.table, this.props.app.r);
-    }
-
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("lol");
-        this.drawPoints(this.props.app.table, this.props.app.r);
+        this.clearGraphic();
+        this.drawPoints(this.props.app.table);
     }
 
-    drawPoints(table, r) {
+    clearGraphic() {
+
+        let svg = document.getElementById("svg");
+
+        for (let i = 0; i < circles.length; i++) {
+                svg.removeChild(circles[i]);
+            }
+
+            circles = [];
+        }
+
+
+    drawPoints(table) {
         for (const point of table) {
             console.log("вывожу объект Point");
-            console.log(point.x, point.y, point.r, point.res);
-            this.drawPoint(point.x, point.y, point.r, point.res)
+            console.log(point.x, point.y, point.r, point.result);
+            this.drawPoint(point.x, point.y, point.r, point.result)
         }
     }
 
@@ -43,8 +52,9 @@ class Graphic extends Component {
         if (result) circle.style.fill = 'green';
         else circle.style.fill = 'red';
 
-        circles.push(circle);
         let svg = document.getElementById("svg");
+
+        circles.push(circle);
         svg.appendChild(circle)
     }
 
@@ -130,8 +140,8 @@ class Graphic extends Component {
             this.props.setY(currentY.toFixed(2));
 
             let params = {
-                x: currentX,
-                y: currentY,
+                x: currentX.toFixed(2),
+                y: currentY.toFixed(2),
                 r: this.props.app.r
             };
 

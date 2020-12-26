@@ -6,9 +6,17 @@ import Footer from "./components/Footer";
 import PointForm from "./components/PointForm";
 import Graphic from "./components/Graphic";
 import Table from "./components/Table";
+import {getPoints} from "./actions/appActions";
 
 class Main extends Component {
 
+    componentDidMount() {
+        this.getPoints();
+    }
+
+    getPoints() {
+        this.props.getPoints();
+    }
 
     render() {
         const {header} = this.props;
@@ -34,7 +42,13 @@ const mapStateToProps = store => {
     }
 };
 
-export default connect(mapStateToProps)(Main);
+const mapDispatchToProps = dispatch => {
+    return {
+        getPoints: () => dispatch(getPoints())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.

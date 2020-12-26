@@ -13,7 +13,7 @@ public class Point {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Column(name = "login", nullable = false)
-    private String user;
+    private String login;
     @Column(name = "x", nullable = false)
     private Double x;
     @Column(name = "y", nullable = false)
@@ -30,19 +30,19 @@ public class Point {
     }
 
 
-    public String getUser ( ) {
-        return user;
+    public String getLogin ( ) {
+        return login;
     }
 
-    public void setUser (String user) {
-        this.user = user;
+    public void setLogin (String user) {
+        this.login = user;
     }
 
     public Point (Double x, Double y, Integer r, String user) {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.user = user;
+        this.login = user;
     }
 
     public Boolean getResult ( ) {
