@@ -14,7 +14,6 @@ class Table extends Component {
                         <th>Результат</th>
                     </tr>
                     {this.props.app.table.map((point, index) => {
-                        console.log(point.result);
                         return (
                             <tr key={index}>
                                 <td>{point.x}</td>

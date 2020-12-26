@@ -247,7 +247,7 @@ input::placeholder {
     color: red;
     font-size: 15px;
     text-align: center;
-    /*position: fixed;*/
+    position: fixed;
     width: inherit;
 }
 

@@ -66,7 +66,6 @@ public class PointManager {
     @POST
     @Path("/getPoints")
     public List<Point> getPoints (@Context HttpServletRequest request, @Context HttpServletResponse response) {
-        System.out.println("client sent me request");
         String login = request.getHeader("Authorization");
 
         return dataBaseService.getPoints(login);

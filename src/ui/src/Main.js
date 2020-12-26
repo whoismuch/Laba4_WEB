@@ -7,8 +7,19 @@ import PointForm from "./components/PointForm";
 import Graphic from "./components/Graphic";
 import Table from "./components/Table";
 import {getPoints} from "./actions/appActions";
+import {Link, NavLink, Redirect} from "react-router-dom";
+import arrow from "../public/images/strelkaWithoutBackground.png"
+import Start from "./Start";
+import {setAnswer, setSignIn} from "./actions/userActions";
+import {withRouter} from 'react-router-dom';
+
 
 class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
 
     componentDidMount() {
         this.getPoints();
@@ -18,10 +29,22 @@ class Main extends Component {
         this.props.getPoints();
     }
 
+
+    logout() {
+        this.props.setAnswer('');
+        this.props.setSignIn(false);
+        localStorage.setItem("loginIn", undefined);
+    }
+
     render() {
         const {header} = this.props;
         return (
             <div>
+                <div className="linkToPrevious">
+                    <NavLink onClick={this.logout} to="/" >
+                        <img src={arrow} alt="arrow" width="80" height="50"/>
+                    </NavLink>
+                </div>
                 <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderMain">
                     <div className="formAndGraphic">
@@ -38,17 +61,20 @@ class Main extends Component {
 
 const mapStateToProps = store => {
     return {
+        app: store.app,
         header: store.header,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPoints: () => dispatch(getPoints())
+        getPoints: () => dispatch(getPoints()),
+        setSignIn: (logIn) => dispatch(setSignIn(logIn)),
+        setAnswer: (answer) => dispatch(setAnswer(answer))
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
 
 
 // HTML разметка, это ненормально для JS файла и такой JS файл невалидный.
