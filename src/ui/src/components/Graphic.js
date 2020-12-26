@@ -2,6 +2,7 @@ import React, {Component} from 'react'; // Component - класс из паке�
 import '../index.css';
 import {connect} from 'react-redux'; // Component - класс из пакета react
 import {sendPoint, setR, setX, setY} from "../actions/appActions";
+
 let circles = [];
 let svg = document.getElementById("svg");
 
@@ -13,7 +14,6 @@ class Graphic extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("lol");
         this.clearGraphic();
         this.drawPoints(this.props.app.table);
     }
@@ -23,17 +23,15 @@ class Graphic extends Component {
         let svg = document.getElementById("svg");
 
         for (let i = 0; i < circles.length; i++) {
-                svg.removeChild(circles[i]);
-            }
-
-            circles = [];
+            svg.removeChild(circles[i]);
         }
+
+        circles = [];
+    }
 
 
     drawPoints(table) {
         for (const point of table) {
-            console.log("вывожу объект Point");
-            console.log(point.x, point.y, point.r, point.result);
             this.drawPoint(point.x, point.y, point.r, point.result)
         }
     }
@@ -43,8 +41,14 @@ class Graphic extends Component {
 
         let circle = document.createElementNS(xmlns, "circle");
 
+        if (this.props.app.r != null) {
+            circle.setAttribute('cx', 150 + ((x * 100) / Number(this.props.app.r)));
+            circle.setAttribute('cy', 150 - ((y * 100) / Number(this.props.app.r)));
+        }
+        else {
             circle.setAttribute('cx', 150 + ((x * 100) / (r)));
             circle.setAttribute('cy', 150 - ((y * 100) / (r)));
+        }
 
         circle.setAttribute('r', 3);
 
