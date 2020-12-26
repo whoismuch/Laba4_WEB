@@ -44,7 +44,7 @@ export function sendPoint(point) {
 
     return dispatch => {
         axios({
-            url: 'http://localhost:8999/back_end_war_exploded/api/point/check',
+            url: 'http://localhost:11200/back_end_war_exploded/api/point/check',
             data: bodyFormData,
             method: 'post',
             headers: {
@@ -86,7 +86,7 @@ export function getPoints() {
     return dispatch => {
         let header = localStorage.getItem('loginIn');
         axios({
-            url: 'http://localhost:8999/back_end_war_exploded/api/point/getPoints',
+            url: 'http://localhost:11200/back_end_war_exploded/api/point/getPoints',
             method: 'post',
             headers: {Authorization: header}
         }).then(data => {

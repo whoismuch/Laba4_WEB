@@ -32,8 +32,8 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path="/" component={Start}/>
-                        <Route path="/main" component={Main}/>
+                        <Route exact path="/~s285611/lab4/public/" component={Start}/>
+                        <Route path="/~s285611/lab4/public/main" component={Main}/>
                     </Switch>
                 </BrowserRouter>
             </div>

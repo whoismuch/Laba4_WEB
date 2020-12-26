@@ -5,7 +5,7 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "proxy": "http://localhost:8999/point/check",
+  "proxy": "http://localhost:11200/back_end_war_exploded/point/check",
   "devDependencies": {
     "babel-core": "^6.22.0",
     "babel-loader": "^6.2.10",
@@ -51,5 +51,6 @@
     "copy-all": "cp dist/*.* ../resources/static",
     "clean-all": "npm run clean-frontend && npm run clean-boot-frontend",
     "build-prod": "npm run clean-all && npm run build && npm run copy-all"
-  }
+  },
+  "homepage": "https://se.ifmo.ru/~s285611/lab4/public/"
 }
