@@ -15,14 +15,15 @@ canvas {
     margin-right: 30px;
 }
 
-@media (min-width: 708px) and (max-width: 1169px ) {
+
+@media (min-width: 708px) {
 
     .header {
         color: purple;
         font-size: 35px;
         text-align: center;
         top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 10%;
         background: papayawhip;
         padding: 3px;
         padding-top: 1px;
@@ -121,7 +122,6 @@ canvas {
     }
 
 
-
     .formErrors {
         color: red;
         font-size: 15px;
@@ -129,38 +129,217 @@ canvas {
         width: 100%;
     }
 
+    .centerBorderStart {
+        background: white; /* Цвет фона */
+        color: black; /* Цвет текста */
+        padding-bottom: 40px;
+        border-radius: 20px; /* Уголки */
+        margin: 70px auto auto;
+        padding-top: 30px;
+        width: 520px;
+        height: 310px;
+        opacity: 0.77;
+    }
+
+    .formErrorsAuth {
+        color: red;
+        font-size: 15px;
+        text-align: center;
+        position: fixed;
+        width: inherit;
+    }
+
+    .formErrors {
+        color: red;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
 
 }
 
-.formErrorsAuth {
-    color: red;
-    font-size: 15px;
-    text-align: center;
-    position: fixed;
-    width: 350px;
+
+@media (max-width: 707px) {
+
+    .header {
+        color: purple;
+        font-size: 35px;
+        text-align: center;
+        top: 0;
+        margin-bottom: 5%;
+        background: papayawhip;
+        padding: 3px;
+        padding-top: 1px;
+        min-width: 402px;
+        border-radius: 20px; /* Уголки */
+        position: page;
+        width: 100%;
+    }
+
+    .centerBorderMain {
+        display: block;
+        background: white; /* Цвет фона */
+        color: black; /* Цвет текста */
+        /* Поля вокруг текста */
+        padding: 40px 30px 30px;
+        border-radius: 20px; /* Уголки */
+        margin: auto;
+        align-self: center;
+        max-width: 370px;
+        min-width: 340px;
+        width: 75%;
+        height: 300px;
+        opacity: 0.77;
+        overflow: scroll;
+    }
+
+    .centerBorderStart {
+        background: white; /* Цвет фона */
+        color: black; /* Цвет текста */
+        padding-bottom: 40px;
+        border-radius: 20px; /* Уголки */
+        margin: 70px auto auto;
+        padding-top: 30px;
+        min-width: 390px;
+        width: 75%;
+        height: 340px;
+        opacity: 0.77;
+    }
+
+    .formAndGraphic {
+        margin: auto;
+        /*display: flex;*/
+    }
+
+    .commonGroup {
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .commonGroup > .fillItPls, .inputArea {
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        border-radius: 15px;
+        opacity: 1;
+        width: 100%;
+    }
+
+    .fillItPls {
+        margin-bottom: 15px;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+
+    .commonGroup > .XR > .chooseR, .selectX {
+        width: 50%;
+        height: 45px;
+        text-align: center;
+        padding: 10px 10px 45px 10px;
+    }
+
+
+    .commonGroup > .XR > .selectX {
+        margin-left: 10%;
+    }
+
+
+    .commonGroup > .enterY {
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        border-radius: 15px;
+        opacity: 1;
+        padding: 0px 7px 43px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        width: 97%;
+        height: 30px;
+    }
+
+    #inp {
+        font-size: medium;
+        height: 35px;
+        width: 90%;
+        border-color: #800080;
+        border-radius: 5px;
+        border-width: medium;
+    }
+
+
+    table {
+        margin-top: 60px;
+        background: rgba(159, 19, 255, 0.37);
+        color: black;
+        width: 100%; /* Ширина таблицы */
+        border-spacing: 1px; /* Расстояние между ячейками */
+        text-align: center;
+        overflow: scroll;
+    }
+
+
+    .formErrorsAuth {
+        color: red;
+        font-size: 15px;
+        text-align: center;
+        position: absolute;
+        width: inherit;
+    }
+
+    .formErrors {
+        color: red;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+
+    .svg {
+        margin-top: 20px;
+    }
+
+    svg#svg {
+        display: block;
+        margin: auto auto 10px;
+    }
+
+
 }
 
-label#title {
-    padding-bottom: 10px;
-    margin-left: 7px;
-}
 
-.errorText {
-    text-align: center;
-    width: 100%;
-}
+@media (min-width: 1169px) {
 
-.svg > .svgErrorText {
-    width: 300px;
-    color: red;
-    text-align: center;
-}
+    .header {
+        color: purple;
+        font-size: 35px;
+        text-align: center;
+        top: 0;
+        margin-bottom: 7%;
+        background: papayawhip;
+        padding: 3px;
+        padding-top: 1px;
+        border-radius: 20px; /* Уголки */
+        /*min-width: 708px;*/
+        /*max-width: 1169px;*/
+        position: page;
+        width: 100%;
+    }
 
-.svg > .svgErrors {
-    font-size: 20px;
-    text-align: center;
-    width: 100%;
-    color: red;
+    .centerBorderMain {
+        background: white; /* Цвет фона */
+        color: black; /* Цвет текста */
+        /* Поля вокруг текста */
+        padding: 40px 30px 30px;
+        border-radius: 20px; /* Уголки */
+        margin: auto;
+        max-width: 850px;
+        width: 70%;
+        height: 340px;
+        opacity: 0.77;
+        overflow: scroll;
+    }
+
 }
 
 /*.header {*/
@@ -175,6 +354,7 @@ label#title {
 /*    width: 100%;*/
 /*}*/
 
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -183,7 +363,6 @@ label#title {
     border-radius: 20px; /* Уголки */
     width: 100%;
 }
-
 
 
 .checkButtonInside {
@@ -222,17 +401,17 @@ a#github {
     font-size: 32px;
 }
 
+label#title {
+    margin-top: 5px;
+}
 
-.centerBorderStart {
-    background: white; /* Цвет фона */
-    color: black; /* Цвет текста */
-    padding-bottom: 40px;
-    border-radius: 20px; /* Уголки */
-    margin: 70px auto auto;
-    padding-top: 30px;
-    width: 520px;
-    height: 310px;
-    opacity: 0.77;
+
+.svgErrorText {
+    text-align: center;
+}
+
+.svgErrors {
+    color: red;
 }
 
 /*.centerBorderMain {*/
@@ -295,7 +474,6 @@ a#github {
 /*}*/
 
 
-
 /*.commonGroup > .enterY {*/
 /*    background: rgba(159, 19, 255, 0.37);*/
 /*    color: black;*/
@@ -317,7 +495,6 @@ a#github {
 /*    border-radius: 5px;*/
 /*    border-width: medium;*/
 /*}*/
-
 
 
 .inputArea, .commonGroup > .inputArea {
@@ -419,7 +596,6 @@ input::placeholder {
     margin: auto;
     margin-right: 15px;
 }
-
 
 
 /*.commonGroup {*/

@@ -5,7 +5,7 @@ class FormErrors extends Component {
     render() {
         return (
             <div>
-                <p>{this.props.answer}</p>
+                {this.props.answer}
                 {Object.keys(this.props.formErrors).map((fieldName, i) => {
                     if(this.props.formErrors[fieldName].length > 0){
                         return (
