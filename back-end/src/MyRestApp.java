@@ -1,3 +1,7 @@
+import database.DataBaseService;
+import managers.PointManager;
+import managers.UserManager;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.Arrays;

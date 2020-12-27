@@ -1,17 +1,18 @@
+package managers;
+
+import database.DataBaseService;
+import entities.User;
+import handlers.RequestHandler;
+
 import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Singleton;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 @Singleton

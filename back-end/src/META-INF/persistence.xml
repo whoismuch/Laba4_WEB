@@ -6,7 +6,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
 
-        <class>Point</class>
+        <class>entities.Point</class>
         <!--        <properties>-->
         <!--            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>-->
         <!--            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>-->

@@ -1,12 +1,16 @@
-import javax.annotation.Resource;
+package database;
+
+import entities.Point;
+import entities.User;
+import handlers.PasswordHandler;
+
 import javax.ejb.Singleton;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.transaction.*;
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Singleton
@@ -40,10 +44,10 @@ public class DataBaseService {
         try {
             User user = (User) em.createQuery("SELECT c FROM User c WHERE c.login LIKE :castLogin").setParameter("castLogin", login).getSingleResult( );
             if (!(user == null)) {
-                if (password.hashCode() == user.getPassword()) return true;
+                if (PasswordHandler.getHashedPassword(password) == user.getPassword()) return true;
             }
             return false;
-        } catch (NoResultException e) {
+        } catch (NoResultException | NoSuchAlgorithmException e) {
             return false;
         }
     }

@@ -1,4 +1,11 @@
+package entities;
+
+import handlers.PasswordHandler;
+
 import javax.persistence.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Entity
 @Table(name="users")
@@ -18,9 +25,9 @@ public class User {
 
     }
 
-    public User(String login, String password) {
+    public User(String login, String password) throws NoSuchAlgorithmException {
         this.login = login;
-        this.password = password.hashCode();
+        this.password = PasswordHandler.getHashedPassword(password);
     }
 
     public Integer getId ( ) {

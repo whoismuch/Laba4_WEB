@@ -1,29 +1,19 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.simple.JSONObject;
+package managers;
 
-import javax.annotation.PostConstruct;
+import database.DataBaseService;
+import entities.Point;
+import handlers.RequestHandler;
+
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.ejb.Stateful;
-import javax.json.JsonArray;
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.Response;
 
 
 @Singleton
