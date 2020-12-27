@@ -94,9 +94,9 @@ canvas {
         color: black;
         border-radius: 15px;
         opacity: 1;
-        padding: 0px 7px 43px;
+        padding: 0 7px 43px;
         margin-top: 10px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         width: 97%;
         height: 30px;
     }
@@ -166,10 +166,9 @@ canvas {
         font-size: 35px;
         text-align: center;
         top: 0;
-        margin-bottom: 5%;
+        margin-bottom: 7%;
         background: papayawhip;
-        padding: 3px;
-        padding-top: 1px;
+        padding: 1px 3px 3px;
         min-width: 402px;
         border-radius: 20px; /* Уголки */
         position: page;
@@ -198,11 +197,11 @@ canvas {
         color: black; /* Цвет текста */
         padding-bottom: 40px;
         border-radius: 20px; /* Уголки */
-        margin: 70px auto auto;
+        margin: auto;
         padding-top: 30px;
         min-width: 390px;
         width: 75%;
-        height: 340px;
+        height: 380px;
         opacity: 0.77;
     }
 
@@ -251,9 +250,9 @@ canvas {
         color: black;
         border-radius: 15px;
         opacity: 1;
-        padding: 0px 7px 43px;
+        padding: 0 7px 43px;
         margin-top: 10px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         width: 97%;
         height: 30px;
     }
@@ -266,6 +265,8 @@ canvas {
         border-radius: 5px;
         border-width: medium;
     }
+
+
 
 
     table {
@@ -305,6 +306,26 @@ canvas {
     }
 
 
+    .buttons {
+        position: relative !important;
+        display: block  !important;
+    }
+
+    .buttonArea {
+        width: 70% !important;
+        height: 35px !important;
+        margin: auto !important;
+        margin-bottom: 10px !important;
+    }
+
+    .checkButtonInside {
+        background-color: papayawhip;
+        border-color: #800080;
+        border-radius: 5px;
+        width: 100% !important;
+        height: 35px !important;
+    }
+
 }
 
 
@@ -317,8 +338,7 @@ canvas {
         top: 0;
         margin-bottom: 7%;
         background: papayawhip;
-        padding: 3px;
-        padding-top: 1px;
+        padding: 1px 3px 3px;
         border-radius: 20px; /* Уголки */
         /*min-width: 708px;*/
         /*max-width: 1169px;*/
@@ -341,19 +361,6 @@ canvas {
     }
 
 }
-
-/*.header {*/
-/*    color: purple;*/
-/*    font-size: 35px;*/
-/*    text-align: center;*/
-/*    top: 0;*/
-/*    background: papayawhip;*/
-/*    padding: 3px;*/
-/*    padding-top: 1px;*/
-/*    border-radius: 20px; !* Уголки *!*/
-/*    width: 100%;*/
-/*}*/
-
 
 .footer {
     position: fixed;
@@ -414,27 +421,6 @@ label#title {
     color: red;
 }
 
-/*.centerBorderMain {*/
-/*    background: white; !* Цвет фона *!*/
-/*    color: black; !* Цвет текста *!*/
-/*    !* Поля вокруг текста *!*/
-/*    padding: 50px 70px 70px;*/
-/*    border-radius: 20px; !* Уголки *!*/
-/*    margin: 30px auto auto;*/
-/*    width: 700px;*/
-/*    height: 310px;*/
-/*    opacity: 0.77;*/
-/*    overflow: scroll;*/
-/*}*/
-
-/*.formAndGraphic {*/
-/*    display: flex;*/
-/*}*/
-
-/*.ff, .time-and-link {*/
-/*    display: flex;*/
-/*}*/
-
 .commonGroup > .XR > * {
     background: rgba(159, 19, 255, 0.37);
     color: black;
@@ -442,60 +428,11 @@ label#title {
     opacity: 1;
 }
 
-/*.commonGroup > .fillItPls, .inputArea {*/
-/*    background: rgba(159, 19, 255, 0.37);*/
-/*    color: black;*/
-/*    border-radius: 15px;*/
-/*    opacity: 1;*/
-/*    width: 100%*/
-/*}*/
 
 .dropdown {
     font-size: medium;
     border-color: #800080;
 }
-
-
-/*.commonGroup > .XR > .chooseR {*/
-/*    width: 135px;*/
-/*    height: 45px;*/
-/*    padding: 10px 13px 45px 18px;*/
-/*}*/
-
-/*.chooseRTitle {*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.commonGroup > .XR > .selectX {*/
-/*    margin-left: 30px;*/
-/*    width: 135px;*/
-/*    height: 45px;*/
-/*    padding: 10px 13px 45px 18px;*/
-/*}*/
-
-
-/*.commonGroup > .enterY {*/
-/*    background: rgba(159, 19, 255, 0.37);*/
-/*    color: black;*/
-/*    border-radius: 15px;*/
-/*    opacity: 1;*/
-/*    padding: 0px 7px 43px;*/
-/*    margin-top: 20px;*/
-/*    margin-bottom: 0px;*/
-/*    width: 350px;*/
-/*    height: 30px;*/
-
-/*}*/
-
-/*#inp {*/
-/*    font-size: medium;*/
-/*    height: 35px;*/
-/*    width: 100%;*/
-/*    border-color: #800080;*/
-/*    border-radius: 5px;*/
-/*    border-width: medium;*/
-/*}*/
-
 
 .inputArea, .commonGroup > .inputArea {
     padding: 15px 20px 25px;
@@ -526,34 +463,6 @@ input::placeholder {
     font-family: "Comic Sans MS"
 
 }
-
-
-/*.errorText {*/
-/*    text-align: center;*/
-/*    !*position: fixed;*!*/
-/*    width: inherit;*/
-/*}*/
-
-/*.svg > .errorText {*/
-/*    text-align: center;*/
-/*    width: inherit;*/
-/*    color: red;*/
-/*}*/
-
-/*.formErrorsAuth {*/
-/*    color: red;*/
-/*    font-size: 15px;*/
-/*    text-align: center;*/
-/*    position: fixed;*/
-/*    width: 50%;*/
-/*}*/
-
-/*.formErrors {*/
-/*    color: red;*/
-/*    font-size: 15px;*/
-/*    text-align: center;*/
-/*    width: 100%;*/
-/*}*/
 
 
 .buttons {
@@ -597,43 +506,15 @@ input::placeholder {
     margin-right: 15px;
 }
 
-
-/*.commonGroup {*/
-/*    display: block;*/
-/*    width: 365px;*/
-/*    margin-right: 55px;*/
-/*}*/
-
 .XR {
     display: flex;
 
 }
 
-/*.fillItPls {*/
-/*    margin-bottom: 15px;*/
-/*    padding: 5px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.svg {*/
-/*    margin-bottom: 20px;*/
-/*}*/
-
 .axis-text {
     font-size: 15px;
     font-weight: bold;
 }
-
-
-/*table {*/
-/*    margin-top: 60px;*/
-/*    background: rgba(159, 19, 255, 0.37);*/
-/*    color: black;*/
-/*    width: 100%; !* Ширина таблицы *!*/
-/*    border-spacing: 1px; !* Расстояние между ячейками *!*/
-/*    text-align: center;*/
-/*    overflow: scroll;*/
-/*}*/
 
 td, th, tr {
     width: 20%;
@@ -641,9 +522,6 @@ td, th, tr {
     font-size: 20px;
 }
 
-/*.rectangle-figure:hover, .triangle-figure:hover, .circle-figure:hover {*/
-/*	fill: red;*/
-/*}*/
 
 .frame {
     opacity: 0;
