@@ -53,8 +53,8 @@ class PointForm extends Component {
     };
 
     handleChangeY = (value) => {
-        this.props.setY(value);
-        this.validateField('paramY', value)
+        this.props.setY(Number(value).toFixed(2));
+        this.validateField('paramY', Number(value).toFixed(2))
     };
 
     paramsIsReady = () => {
