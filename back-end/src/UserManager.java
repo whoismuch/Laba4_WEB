@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Singleton
-@Path("/user")
+@Path("/user-manager")
 public class UserManager {
 
     @EJB
     DataBaseService dataBaseService;
 
     @POST
-    @Path("/signUp")
+    @Path("/sign-up")
     @Consumes("multipart/form-data")
     public boolean addUser (Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
@@ -36,7 +36,7 @@ public class UserManager {
     }
 
     @POST
-    @Path("/signIn")
+    @Path("/sign-in")
     public boolean checkUser (@Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
         String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
         if (userValues != null) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);

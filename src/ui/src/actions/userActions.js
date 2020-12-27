@@ -44,7 +44,7 @@ export function registration(user, event) {
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:8999/back_end_war_exploded/api/user/signUp',
+            url: 'http://localhost:8999/back_end_war_exploded/api/user-manager/sign-up',
             data: bodyFormData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -107,7 +107,7 @@ export function login(user, event) {
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:8999/back_end_war_exploded/api/user/signIn',
+            url: 'http://localhost:8999/back_end_war_exploded/api/user-manager/sign-in',
             headers: {
                 'Authorization': header
             }

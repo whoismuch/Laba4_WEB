@@ -27,7 +27,7 @@ import javax.ws.rs.core.Response;
 
 
 @Singleton
-@Path("/point")
+@Path("/point-manager")
 public class PointManager {
 
     @EJB
@@ -35,7 +35,7 @@ public class PointManager {
 
 
     @POST
-    @Path("/check")
+    @Path("/new-point")
     @Consumes("multipart/form-data")
     public List<Point> addPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException, ServletException {
         try {
@@ -67,7 +67,7 @@ public class PointManager {
 
 
     @GET
-    @Path("/getPoints/{username}")
+    @Path("/points-list/{username}")
     public List<Point> getPoints (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) {
 
         String[] userValues =  RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
