@@ -24,23 +24,23 @@ public class UserManager {
     @POST
     @Path("/signUp")
     @Consumes("multipart/form-data")
-    public boolean addUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
+    public boolean addUser (Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
         String password = params.get("password");
         User user = new User(login, password);
         if (!dataBaseService.doesUserExist(login)) {
             dataBaseService.saveUser(user);
             return true;
-        }
-        else return false;
+        } else return false;
 
     }
 
     @POST
     @Path("/signIn")
-    public boolean checkUser(Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
-        String login = params.get("login");
-        String password = params.get("password");
-        return dataBaseService.doesCurUserExist(login, password);
+    public boolean checkUser (@Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
+        String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
+        if (userValues != null) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
+
+        return false;
     }
 }

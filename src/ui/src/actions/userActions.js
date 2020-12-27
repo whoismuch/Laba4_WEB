@@ -39,11 +39,12 @@ export function registration(user, event) {
     bodyFormData.append('login', user.login);
     bodyFormData.append('password', user.password);
 
+
     console.log("я отправляю данные");
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:11200/back_end_war_exploded/api/user/signUp',
+            url: 'http://localhost:8999/back_end_war_exploded/api/user/signUp',
             data: bodyFormData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -52,9 +53,11 @@ export function registration(user, event) {
             .then(result => {
                 console.log("я заебалась");
                 console.log(result.status);
+                let header = 'Basic ' + btoa(user.login + ':' + user.password);
                 if (result.data) {
                     console.log("я устанвливаю токен");
-                    localStorage.setItem("loginIn", user.login);
+                    localStorage.setItem("user", header);
+                    localStorage.setItem("login", user.login);
                     dispatch({
                         type: SET_ANSWER,
                         payload: "Вы успешно зарегистрировались"
@@ -86,6 +89,10 @@ export function registration(user, event) {
             type: SET_PASSWORD,
             payload: '',
         });
+        dispatch({
+            type: SET_R,
+            payload: null
+        });
 
     }
 }
@@ -94,18 +101,15 @@ export function login(user, event) {
 
     event.preventDefault(event);
 
-    let bodyFormData = new FormData();
-    bodyFormData.append('login', user.login);
-    bodyFormData.append('password', user.password);
+    let header = 'Basic ' + btoa(user.login + ':' + user.password);
 
     console.log("я отправляю данные логин ");
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:11200/back_end_war_exploded/api/user/signIn',
-            data: bodyFormData,
+            url: 'http://localhost:8999/back_end_war_exploded/api/user/signIn',
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Authorization': header
             }
         })
             .then(result => {
@@ -113,7 +117,8 @@ export function login(user, event) {
                 console.log(result.status);
                 if (result.data) {
                     console.log("я устанвливаю токен логин");
-                    localStorage.setItem("loginIn", user.login);
+                    localStorage.setItem("user", header);
+                    localStorage.setItem("login", user.login);
                     dispatch({
                         type: SET_ANSWER,
                         payload: "Вход в систему успешно выполнен"
@@ -145,7 +150,10 @@ export function login(user, event) {
             type: SET_PASSWORD,
             payload: '',
         });
-
+        dispatch({
+            type: SET_R,
+            payload: null
+        });
     }
 }
 

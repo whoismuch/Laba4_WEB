@@ -16,11 +16,11 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        // console.log(localStorage.getItem("loginIn"));
-        // localStorage.setItem("loginIn", undefined);
+        // console.log(localStorage.getItem("user"));
+        // localStorage.setItem("user", undefined);
         // this.props.setSignIn(false);
-        // console.log(localStorage.getItem("loginIn"));
-        if (localStorage.getItem("loginIn") != null && localStorage.getItem("loginIn") !== "undefined") {
+        // console.log(localStorage.getItem("user"));
+        if (localStorage.getItem("user") != null && localStorage.getItem("user") !== "undefined") {
             this.props.setSignIn(true)
         } else {
             this.props.setSignIn(false)
@@ -32,8 +32,8 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path="/~s285611/lab4/public/" component={Start}/>
-                        <Route path="/~s285611/lab4/public/main" component={Main}/>
+                        <Route exact path="/" component={Start}/>
+                        <Route path="/main" component={Main}/>
                     </Switch>
                 </BrowserRouter>
             </div>

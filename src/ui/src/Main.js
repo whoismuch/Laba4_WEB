@@ -33,7 +33,7 @@ class Main extends Component {
     logout() {
         this.props.setAnswer('');
         this.props.setSignIn(false);
-        localStorage.setItem("loginIn", undefined);
+        localStorage.setItem("user", undefined);
     }
 
     render() {
@@ -41,7 +41,8 @@ class Main extends Component {
         return (
             <div>
                 <div className="linkToPrevious">
-                    <NavLink onClick={this.logout} to="/~s285611/lab4/public/" >
+                    <NavLink onClick={this.logout} to="/" >
+                    {/*<NavLink onClick={this.logout} to="/~s285611/lab4/public/" >*/}
                         <img src={arrow} alt="arrow" width="80" height="50"/>
                     </NavLink>
                 </div>

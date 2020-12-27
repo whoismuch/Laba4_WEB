@@ -1,3 +1,5 @@
+import {login} from "./userActions";
+
 export const SET_X = 'SET_X';
 export const SET_Y = 'SET_Y';
 export const SET_R = 'SET_R';
@@ -44,12 +46,12 @@ export function sendPoint(point) {
 
     return dispatch => {
         axios({
-            url: 'http://localhost:11200/back_end_war_exploded/api/point/check',
+            url: 'http://localhost:8999/back_end_war_exploded/api/point/check',
             data: bodyFormData,
             method: 'post',
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': localStorage.getItem("loginIn")
+                'Authorization': localStorage.getItem("user")
             }
         })
             .then(result => {
@@ -84,11 +86,12 @@ export function sendPoint(point) {
 export function getPoints() {
     console.log("I get points");
     return dispatch => {
-        let header = localStorage.getItem('loginIn');
         axios({
-            url: 'http://localhost:11200/back_end_war_exploded/api/point/getPoints',
-            method: 'post',
-            headers: {Authorization: header}
+            url: 'http://localhost:8999/back_end_war_exploded/api/point/getPoints/' + localStorage.getItem("login"),
+            method: 'get',
+            headers: {
+                'Authorization': localStorage.getItem("user")
+            }
         }).then(data => {
             dispatch({
                 type: SET_TABLE,

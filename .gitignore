@@ -1,2 +1,4 @@
 # Project exclude paths
 /out/
+/src/ui/src/examples/
+/src/ui/src/Test.js
