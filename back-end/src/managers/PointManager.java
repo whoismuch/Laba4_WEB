@@ -3,6 +3,7 @@ package managers;
 import database.DataBaseService;
 import entities.Point;
 import handlers.RequestHandler;
+import handlers.Validator;
 
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -38,16 +39,15 @@ public class PointManager {
             if (userValues != null
                     && dataBaseService.doesCurUserExist(userValues[0], userValues[1])
                     && username.equals(userValues[0])) {
-                int r = (int) dr;
-                if (x < -6 || x > 6 || y < -6 || y > 6 || r < 1 || r > 4) throw new NumberFormatException( );
-                Point point = new Point(x, y, r, userValues[0]);
-                if (x >= 0 && x <= r && y >= -1 * r && y <= 0 || x <= 0 && y >= 0 && x * x + y * y <= r * r / 4d || y <= 0 && x <= 0 && y >= -0.5 * x - (r / 2d))
-                    point.setResult(true);
-                else point.setResult(false);
-                List<Point> pointList = dataBaseService.getPoints(userValues[0]);
-                dataBaseService.savePoint(point);
-                pointList.add(point);
-                return pointList;
+                if (Validator.validatePoint(x, y, dr)) {
+                    Point point = new Point(x, y, (int) dr, userValues[0]);
+                    point.setResult(Validator.isThePointIn(x, y, (int) dr));
+
+                    List<Point> pointList = dataBaseService.getPoints(userValues[0]);
+                    dataBaseService.savePoint(point);
+                    pointList.add(point);
+                    return pointList;
+                }
             }
         } catch (NumberFormatException ex) {
             return null;

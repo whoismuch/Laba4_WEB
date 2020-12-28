@@ -3,6 +3,7 @@ package managers;
 import database.DataBaseService;
 import entities.User;
 import handlers.RequestHandler;
+import handlers.Validator;
 
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -29,7 +30,7 @@ public class UserManager {
     public boolean addUser (@PathParam("username") String username, Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
         String password = params.get("password");
-        if (login.equals(username)) {
+        if (login.equals(username) && Validator.validateUser(login, password)) {
             User user = new User(login, password);
             if (!dataBaseService.doesUserExist(login)) {
                 dataBaseService.saveUser(user);
@@ -44,7 +45,7 @@ public class UserManager {
     @Path("/sign-in/{username}")
     public boolean checkUser (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
         String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-        if (userValues != null && username.equals(userValues[0])) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
+        if (userValues != null && username.equals(userValues[0]) && Validator.validateUser(userValues[0], userValues[1])) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
 
         return false;
     }
