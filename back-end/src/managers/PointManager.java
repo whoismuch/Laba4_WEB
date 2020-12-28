@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 @Singleton
-@Path("/point-manager")
+@Path("/points/{username}")
 public class PointManager {
 
     @EJB
@@ -28,7 +28,6 @@ public class PointManager {
 
 
     @POST
-    @Path("/new-point/{username}")
     @Consumes("multipart/form-data")
     public Response addPoint (@PathParam("username") String username, Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response)  {
         Response.Status status = Response.Status.OK;
@@ -68,7 +67,6 @@ public class PointManager {
 
 
     @GET
-    @Path("/points-list/{username}")
     public Response getPoints (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) {
         Response.Status status = Response.Status.OK;
         List<Point> message = new ArrayList<>();
