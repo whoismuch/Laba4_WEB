@@ -6,12 +6,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordHandler {
 
-    public static int getHashedPassword (String password) throws NoSuchAlgorithmException {
+    public static String getHashedPassword (String password) throws NoSuchAlgorithmException {
 
         MessageDigest sha = MessageDigest.getInstance("SHA-384");
+
         byte[] messageDigest = sha.digest(password.getBytes( ));
-        BigInteger result = new BigInteger(1, messageDigest);
-        return result.intValue();
+        BigInteger no = new BigInteger(1, messageDigest);
+
+        return no.toString(16);
 
     }
 }
