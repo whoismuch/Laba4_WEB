@@ -25,9 +25,9 @@ public class PointManager {
 
 
     @POST
-    @Path("/new-point")
+    @Path("/new-point/{username}")
     @Consumes("multipart/form-data")
-    public List<Point> addPoint (Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException, ServletException {
+    public List<Point> addPoint (@PathParam("username") String username, Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException, ServletException {
         try {
 
             double x = params.get("x");
@@ -35,7 +35,9 @@ public class PointManager {
             double dr = params.get("r");
 
             String[] userValues =  RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-            if (userValues != null && dataBaseService.doesCurUserExist(userValues[0], userValues[1])) {
+            if (userValues != null
+                    && dataBaseService.doesCurUserExist(userValues[0], userValues[1])
+                    && username.equals(userValues[0])) {
                 int r = (int) dr;
                 if (x < -6 || x > 6 || y < -6 || y > 6 || r < 1 || r > 4) throw new NumberFormatException( );
                 Point point = new Point(x, y, r, userValues[0]);

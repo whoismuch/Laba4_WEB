@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import java.io.IOException;
 import java.util.Map;
@@ -23,24 +24,27 @@ public class UserManager {
     DataBaseService dataBaseService;
 
     @POST
-    @Path("/sign-up")
+    @Path("/sign-up/{username}")
     @Consumes("multipart/form-data")
-    public boolean addUser (Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
+    public boolean addUser (@PathParam("username") String username, Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
         String login = params.get("login");
         String password = params.get("password");
-        User user = new User(login, password);
-        if (!dataBaseService.doesUserExist(login)) {
-            dataBaseService.saveUser(user);
-            return true;
-        } else return false;
+        if (login.equals(username)) {
+            User user = new User(login, password);
+            if (!dataBaseService.doesUserExist(login)) {
+                dataBaseService.saveUser(user);
+                return true;
+            }
+        }
+        return false;
 
     }
 
     @POST
-    @Path("/sign-in")
-    public boolean checkUser (@Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
+    @Path("/sign-in/{username}")
+    public boolean checkUser (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
         String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-        if (userValues != null) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
+        if (userValues != null && username.equals(userValues[0])) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
 
         return false;
     }

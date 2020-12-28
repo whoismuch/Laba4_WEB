@@ -46,7 +46,7 @@ export function sendPoint(point) {
 
     return dispatch => {
         axios({
-            url: 'http://localhost:8999/back_end_war_exploded/api/point-manager/new-point',
+            url: 'http://localhost:8999/back_end_war_exploded/api/point-manager/new-point/' + localStorage.getItem("login"),
             data: bodyFormData,
             method: 'post',
             headers: {
