@@ -29,28 +29,26 @@ public class PointManager {
 
     @POST
     @Consumes("multipart/form-data")
-    public Response addPoint (@PathParam("username") String username, Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response)  {
+    public Response addPoint (@PathParam("username") String username, Map<String, Double> params, @Context HttpServletRequest request, @Context HttpServletResponse response) {
         Response.Status status = Response.Status.OK;
-        List<Point> message = new ArrayList<>();
+        List<Point> message = new ArrayList<>( );
         try {
 
             double x = params.get("x");
             double y = params.get("y");
             double dr = params.get("r");
 
-            String[] userValues =  RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
+            String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
 
-            if (userValues == null || !dataBaseService.doesCurUserExist(userValues[0], userValues[1]) || !username.equals(userValues[0])) status = Response.Status.UNAUTHORIZED;
-            else {
-                if (!Validator.validatePoint(x, y, dr)) throw new NumberFormatException();
-                    Point point = new Point(x, y, (int) dr, userValues[0]);
-                    point.setResult(Validator.isThePointIn(x, y, (int) dr));
+            if (!Validator.validatePoint(x, y, dr)) throw new NumberFormatException( );
+            Point point = new Point(x, y, (int) dr, userValues[0]);
+            point.setResult(Validator.isThePointIn(x, y, (int) dr));
 
-                    List<Point> pointList = dataBaseService.getPoints(userValues[0]);
-                    dataBaseService.savePoint(point);
-                    pointList.add(point);
-                    message = pointList;
-              }
+            List<Point> pointList = dataBaseService.getPoints(userValues[0]);
+            dataBaseService.savePoint(point);
+            pointList.add(point);
+            message = pointList;
+
         } catch (NumberFormatException ex) {
             status = Response.Status.BAD_REQUEST;
         } catch (NullPointerException ex) {
@@ -62,30 +60,22 @@ public class PointManager {
         return Response
                 .status(status)
                 .entity(message)
-                .build();
+                .build( );
     }
 
 
     @GET
     public Response getPoints (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) {
-        Response.Status status = Response.Status.OK;
-        List<Point> message = new ArrayList<>();
-        try {
-            String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-            if (userValues == null
-                    || !username.equals(userValues[0])
-                    || !dataBaseService.doesCurUserExist(userValues[0], userValues[1]))  status = Response.Status.UNAUTHORIZED;
 
-            else message = dataBaseService.getPoints(userValues[0]);
 
-        } catch (NullPointerException ex) {
-            status = Response.Status.BAD_REQUEST;
-        }
+        String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
+
+        List<Point> message = dataBaseService.getPoints(userValues[0]);
 
         return Response
-                .status(status)
+                .status(Response.Status.OK)
                 .entity(message)
-                .build();
+                .build( );
     }
 
 }

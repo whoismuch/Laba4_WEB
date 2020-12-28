@@ -73,7 +73,7 @@ export function sendPoint(point) {
                 console.log(error.response.status);
                 let answer = 'Error';
                 if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
-                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 401) answer = 'Вы не прошли аунтефикацию';
                 if (status === 404) answer = 'Потеряно соединение';
 
                 dispatch({
@@ -108,7 +108,7 @@ export function getPoints() {
             console.log(error.response.status);
             let answer = 'Error';
             if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
-            if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+            if (status === 401) answer = 'Вы не прошли аунтефикацию';
             if (status === 404) answer = 'Потеряно соединение';
 
             dispatch({

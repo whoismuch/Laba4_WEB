@@ -44,7 +44,7 @@ export function registration(user, event) {
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:8999/back_end_war_exploded/api/user-manager/sign-up/' + user.login,
+            url: 'http://localhost:8999/back_end_war_exploded/api/users/registration/' + user.login,
             data: bodyFormData,
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -78,7 +78,7 @@ export function registration(user, event) {
                 console.log(error.response.status);
                 let answer = 'Error';
                 if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
-                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 401) answer = 'Вы не прошли аунтефикацию';
                 if (status === 404) answer = 'Потеряно соединение';
 
                 dispatch({
@@ -113,7 +113,7 @@ export function login(user, event) {
     return dispatch => {
         axios({
             method: "post",
-            url: 'http://localhost:8999/back_end_war_exploded/api/user-manager/sign-in/' + user.login,
+            url: 'http://localhost:8999/back_end_war_exploded/api/users/login/' + user.login,
             headers: {
                 'Authorization': header
             }
@@ -145,7 +145,7 @@ export function login(user, event) {
                 console.log(error.response.status);
                 let answer = 'Error';
                 if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
-                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 401) answer = 'Вы не прошли аунтефикацию';
                 if (status === 404) answer = 'Потеряно соединение';
 
                 dispatch({
