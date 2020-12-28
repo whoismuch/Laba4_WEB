@@ -14,6 +14,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Map;
 
@@ -27,26 +28,45 @@ public class UserManager {
     @POST
     @Path("/sign-up/{username}")
     @Consumes("multipart/form-data")
-    public boolean addUser (@PathParam("username") String username, Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
-        String login = params.get("login");
-        String password = params.get("password");
-        if (login.equals(username) && Validator.validateUser(login, password)) {
-            User user = new User(login, password);
-            if (!dataBaseService.doesUserExist(login)) {
-                dataBaseService.saveUser(user);
-                return true;
-            }
-        }
-        return false;
+    public Response addUser (@PathParam("username") String username, Map<String, String> params, @Context HttpServletRequest request, @Context HttpServletResponse response) throws Exception {
+        Response.Status status = Response.Status.OK;
+        boolean message = true;
+       try {
+           String login = params.get("login");
+           String password = params.get("password");
+           if (!login.equals(username) || !Validator.validateUser(login, password)) status = Response.Status.UNAUTHORIZED;
+           else {
+               User user = new User(login, password);
+               if (!dataBaseService.doesUserExist(login)) {
+                   dataBaseService.saveUser(user);
+                   message = true;
+               } else message = false;
+           }
+       } catch (NullPointerException ex) {
+           status = Response.Status.BAD_REQUEST;
+       }
 
+        return Response
+                .status(status)
+                .entity(message)
+                .build();
     }
 
     @POST
     @Path("/sign-in/{username}")
-    public boolean checkUser (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
+    public Response checkUser (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
         String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-        if (userValues != null && username.equals(userValues[0]) && Validator.validateUser(userValues[0], userValues[1])) return dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
+        Response.Status status = Response.Status.OK;
+        boolean message = true;
 
-        return false;
+        if (userValues == null || !username.equals(userValues[0]) || !Validator.validateUser(userValues[0], userValues[1])) status = Response.Status.UNAUTHORIZED;
+        else {
+            message = dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
+        }
+
+        return Response
+                .status(status)
+                .entity(message)
+                .build();
     }
 }

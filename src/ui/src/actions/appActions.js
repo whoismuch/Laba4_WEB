@@ -68,12 +68,18 @@ export function sendPoint(point) {
                     })
                 }
             })
-            .catch(data => {
+            .catch(error => {
+                let status = error.response.status;
+                console.log(error.response.status);
+                let answer = 'Error';
+                if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
+                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 404) answer = 'Потеряно соединение';
+
                 dispatch({
                     type: SET_ANSWER,
-                    payload: "Потеряно соединение"
+                    payload: answer,
                 });
-                console.log(data)
             });
         dispatch({
             type: SET_X,
@@ -97,12 +103,18 @@ export function getPoints() {
                 type: SET_TABLE,
                 payload: data.data
             })
-        }).catch(data => {
+        }).catch(error => {
+            let status = error.response.status;
+            console.log(error.response.status);
+            let answer = 'Error';
+            if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
+            if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+            if (status === 404) answer = 'Потеряно соединение';
+
             dispatch({
                 type: SET_ANSWER,
-                payload: "Потеряно соединение"
+                payload: answer,
             });
-            console.log(data)
         });
     }
 

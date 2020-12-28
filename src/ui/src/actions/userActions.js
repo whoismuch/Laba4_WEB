@@ -73,11 +73,17 @@ export function registration(user, event) {
                     });
                 }
             })
-            .catch(result => {
-                console.log(result);
+            .catch(error => {
+                let status = error.response.status;
+                console.log(error.response.status);
+                let answer = 'Error';
+                if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
+                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 404) answer = 'Потеряно соединение';
+
                 dispatch({
                     type: SET_ANSWER,
-                    payload: "Потеряно соединение",
+                    payload: answer,
                 });
             });
         dispatch({
@@ -134,11 +140,17 @@ export function login(user, event) {
                     });
                 }
             })
-            .catch(result => {
-                console.log(result);
+            .catch(error => {
+                let status = error.response.status;
+                console.log(error.response.status);
+                let answer = 'Error';
+                if (status === 415 || status === 400 ) answer = 'Мб данные в нормальном виде отправите?';
+                if (status === 401) answer = 'Не пытайтесь выдать себя за другого человека';
+                if (status === 404) answer = 'Потеряно соединение';
+
                 dispatch({
-                    type: REGISTER,
-                    payload: "Потеряно соединение",
+                    type: SET_ANSWER,
+                    payload: answer,
                 });
             });
         dispatch({
