@@ -56,12 +56,10 @@ public class UserManager {
     @POST
     @Path("/login/{username}")
     public Response checkUser (@PathParam("username") String username, @Context HttpServletRequest request, @Context HttpServletResponse response) throws IOException {
-        String[] userValues = RequestHandler.authHeaderHandler(request.getHeader("Authorization"));
-        boolean message = dataBaseService.doesCurUserExist(userValues[0], userValues[1]);
 
         return Response
                 .status(Response.Status.OK)
-                .entity(message)
+                .entity(true)
                 .build( );
     }
 }
