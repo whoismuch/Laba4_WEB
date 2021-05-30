@@ -4,9 +4,17 @@ import database.DataBaseService;
 import entities.Point;
 import handlers.RequestHandler;
 import handlers.Validator;
+import mbeans.AverageIntervalBetweenClicks;
+import mbeans.AverageIntervalBetweenClicksMBean;
+import mbeans.PointsCounter;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.ejb.EntityBean;
 import javax.ejb.Singleton;
+import javax.inject.Inject;
+import javax.management.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +22,8 @@ import javax.validation.constraints.Null;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +32,12 @@ import java.util.Map;
 @Singleton
 @Path("/points/{username}")
 public class PointManager {
+
+    @EJB
+    PointsCounter pointsCounter;
+
+    @EJB
+    AverageIntervalBetweenClicks averageIntervalBetweenClicks;
 
     @EJB
     DataBaseService dataBaseService;
@@ -48,6 +64,9 @@ public class PointManager {
             dataBaseService.savePoint(point);
             pointList.add(point);
             message = pointList;
+
+            pointsCounter.changeCounters(point.getResult(), point.getX(), point.getY(), point.getR());
+            averageIntervalBetweenClicks.calculateAverageInterval();
 
         } catch (NumberFormatException ex) {
             status = Response.Status.BAD_REQUEST;
@@ -77,5 +96,6 @@ public class PointManager {
                 .entity(message)
                 .build( );
     }
+
 
 }

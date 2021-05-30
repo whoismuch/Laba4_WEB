@@ -42,7 +42,7 @@ class Main extends Component {
             <div>
                 <div className="linkToPrevious">
                     {/*<NavLink onClick={this.logout} to="/" >*/}
-                    <NavLink onClick={this.logout} to="/~s285611/lab4/public/" >
+                    <NavLink onClick={this.logout} to="/" >
                         <img src={arrow} alt="arrow" width="80" height="50"/>
                     </NavLink>
                 </div>

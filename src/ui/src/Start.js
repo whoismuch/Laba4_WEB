@@ -14,7 +14,7 @@ class Start extends Component {
         return (
             <div>
                 {/*{(user.isLogin  && <Redirect to={"/main"}/>)}*/}
-                {(user.isLogin  && <Redirect to={"/~s285611/lab4/public/main"}/>)}
+                {(user.isLogin  && <Redirect to={"/main"}/>)}
                 <Header name={header.name} surname={header.surname} variant={header.variant} group={header.group}/>
                 <div className="centerBorderStart">
                     <label className="title" id="title">Необходимо авторизоваться</label>
